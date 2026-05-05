@@ -1,146 +1,192 @@
-const logotext = "JOHN";
+const logotext = "MANET LAB";
+
 const meta = {
-    title: "John Doe",
-    description: "I’m John Doe data scientist _ Full stack devloper,currently working in Berlin",
+    title: "Manet | Robotics & AI Portfolio",
+    description:
+        "Robotics, AI, electronics, PCB, Webots, and maker project portfolio.",
 };
 
 const introdata = {
-    title: "I’m John Doe",
+    title: "I build robots, circuits, and intelligent systems.",
     animated: {
-        first: "I love coding",
-        second: "I code cool websites",
-        third: "I develop mobile apps",
+        first: "Micro mouse runs",
+        second: "Battle bot builds",
+        third: "AI vision experiments",
     },
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
-    your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
+    description:
+        "A hands-on portfolio for robotics competitions, PCB work, NASA App ideas, Webots simulations, smart devices, and machine learning projects.",
+    badge: "Robotics + AI + Electronics",
 };
 
 const dataabout = {
-    title: "abit about my self",
-    aboutme: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis dolor id ligula semper elementum feugiat pretium nulla. Nunc non commodo dolor. Nunc mollis dignissim facilisis. Morbi ut magna ultricies.",
+    title: "A bit about my maker side",
+    aboutme:
+        "I like turning ideas into machines that move, sense, and react. My work blends robotics, embedded systems, PCB design, computer vision, simulations, and practical AI experiments. This portfolio is now set up like a project lab, with room to add real photos and videos for each build as it grows.",
 };
-const worktimeline = [{
-        jobtitle: "Designer of week",
-        where: "YAdfi",
-        date: "2020",
+
+const worktimeline = [
+    {
+        jobtitle: "Robotics Builder",
+        where: "Micro Mouse, Battle Bot, Scorpion Robot",
+        date: "Current",
     },
     {
-        jobtitle: "Designer of week",
-        where: "Jamalya",
-        date: "2019",
+        jobtitle: "AI + Automation Explorer",
+        where: "Object Detection, Naive Bayes Email Filter",
+        date: "Current",
     },
     {
-        jobtitle: "Designer of week",
-        where: "ALquds",
-        date: "2019",
+        jobtitle: "Competition + App Projects",
+        where: "HackX, NASA App, Webots Projects",
+        date: "Current",
+    },
+    {
+        jobtitle: "Electronics + PCB Maker",
+        where: "Custom circuits, sensors, and control boards",
+        date: "Current",
     },
 ];
 
-const skills = [{
-        name: "Python",
-        value: 90,
+const skills = [
+    {
+        name: "Robotics Prototyping",
+        value: 92,
     },
     {
-        name: "Djano",
-        value: 85,
+        name: "Embedded Systems",
+        value: 88,
     },
     {
-        name: "Javascript",
+        name: "PCB Design",
+        value: 84,
+    },
+    {
+        name: "Computer Vision",
+        value: 82,
+    },
+    {
+        name: "Webots Simulation",
         value: 80,
     },
     {
-        name: "React",
-        value: 60,
-    },
-    {
-        name: "Jquery",
-        value: 85,
+        name: "Python + Machine Learning",
+        value: 86,
     },
 ];
 
-const services = [{
-        title: "UI & UX Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+const services = [
+    {
+        title: "Robotics Builds",
+        description:
+            "Designing and documenting robots from mechanical ideas to sensors, control logic, testing, and competition-ready improvements.",
     },
     {
-        title: "Mobile Apps",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+        title: "AI + Vision Experiments",
+        description:
+            "Building practical models for object detection, automation, email filtering, and smart-device decision making.",
     },
     {
-        title: "Wordpress Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+        title: "Electronics + PCB Work",
+        description:
+            "Creating clean electronics layouts, wiring plans, and PCB-ready project documentation for real-world prototypes.",
     },
 ];
 
-const dataportfolio = [{
-        img: "https://picsum.photos/400/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
-    {
-        img: "https://picsum.photos/400/800/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
-    {
-        img: "https://picsum.photos/400/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
-    {
-        img: "https://picsum.photos/400/600/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
-    {
-        img: "https://picsum.photos/400/300/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
-    {
-        img: "https://picsum.photos/400/700/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
-    },
+const buildMedia = (slug) => ({
+    folder: `/projects/${slug}`,
+    photo: `/projects/${slug}/photos/cover.jpg`,
+    video: `/projects/${slug}/videos/demo.mp4`,
+});
 
+const dataportfolio = [
     {
-        img: "https://picsum.photos/400/600/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "Micro Mouse",
+        tag: "Autonomous robotics",
+        description:
+            "A maze-solving robot project focused on sensing, motor control, path planning, and fast decision making inside a maze.",
+        highlights: ["Maze navigation", "Sensor tuning", "Control algorithms"],
+        ...buildMedia("micro-mouse"),
     },
     {
-        img: "https://picsum.photos/400/300/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "Battle Bot",
+        tag: "Combat robotics",
+        description:
+            "A rugged robot build for robot-battle challenges, balancing drive power, weapon strategy, durability, and quick repairs.",
+        highlights: ["Chassis design", "Drive system", "Impact testing"],
+        ...buildMedia("battle-bot"),
     },
     {
-        img: "https://picsum.photos/400/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "HackX",
+        tag: "Hackathon project",
+        description:
+            "A fast-build innovation project from ideation to demo, shaped for pitching, prototyping, and solving a real problem under time pressure.",
+        highlights: ["Rapid prototype", "Team workflow", "Demo build"],
+        ...buildMedia("hack-x"),
     },
     {
-        img: "https://picsum.photos/400/550/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "NASA App",
+        tag: "Space + data app",
+        description:
+            "An app idea inspired by space, science, and public datasets, designed to turn complex information into something people can explore.",
+        highlights: ["Space data", "App design", "Public impact"],
+        ...buildMedia("nasa-app"),
     },
     {
-        img: "https://picsum.photos/400/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "Smart Fan",
+        tag: "IoT + embedded systems",
+        description:
+            "A smart fan concept that can react to environment data and user settings, combining sensors, control logic, and automation.",
+        highlights: ["Temperature sensing", "Automation", "Embedded control"],
+        ...buildMedia("smart-fan"),
     },
     {
-        img: "https://picsum.photos/400/700/?grayscale",
-        description: "The wisdom of life consists in the elimination of non-essentials.",
-        link: "#",
+        title: "Naive Bayes Email Filter",
+        tag: "Machine learning",
+        description:
+            "A classifier for filtering emails using Naive Bayes, text preprocessing, probability scoring, and practical spam-detection logic.",
+        highlights: ["Text classification", "Spam filtering", "Model evaluation"],
+        ...buildMedia("naive-bayes-email-filter"),
+    },
+    {
+        title: "Webots Projects",
+        tag: "Robot simulation",
+        description:
+            "Robot simulations built in Webots to test movement, sensors, robot behavior, and ideas before building hardware.",
+        highlights: ["Simulation", "Robot behavior", "Sensor testing"],
+        ...buildMedia("webots-projects"),
+    },
+    {
+        title: "PCB",
+        tag: "Electronics design",
+        description:
+            "A collection space for PCB layouts, circuit experiments, board photos, schematic screenshots, and tested electronics modules.",
+        highlights: ["Circuit design", "Board layout", "Hardware testing"],
+        ...buildMedia("pcb"),
+    },
+    {
+        title: "Scorpion Robot",
+        tag: "Bio-inspired robotics",
+        description:
+            "A scorpion-inspired robot concept for exploring movement, mechanism design, expressive robotics, and sensor-driven behavior.",
+        highlights: ["Mechanisms", "Motion design", "Robot character"],
+        ...buildMedia("scorpion-robot"),
+    },
+    {
+        title: "Object Detection",
+        tag: "Computer vision",
+        description:
+            "A vision project for detecting objects in images or video, with room to show test clips, dataset examples, and model results.",
+        highlights: ["Detection model", "Camera input", "Real-time testing"],
+        ...buildMedia("object-detection"),
     },
 ];
 
 const contactConfig = {
-    YOUR_EMAIL: "name@domain.com",
-    YOUR_FONE: "(555)123-4567",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula eu nunc et sollicitudin. Cras pulvinar, nisi at imperdiet pharetra. ",
-    // creat an emailjs.com account 
-    // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
+    YOUR_EMAIL: "your-email@example.com",
+    YOUR_FONE: "",
+    description:
+        "Have an idea for a robot, AI experiment, electronics build, or competition project? Send a message and let's build something useful.",
+    // Create an emailjs.com account and replace these IDs before using the form in production.
     YOUR_SERVICE_ID: "service_id",
     YOUR_TEMPLATE_ID: "template_id",
     YOUR_USER_ID: "user_id",
@@ -148,10 +194,10 @@ const contactConfig = {
 
 const socialprofils = {
     github: "https://github.com",
-    facebook: "https://facebook.com",
     linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    youtube: "https://youtube.com",
 };
+
 export {
     meta,
     dataabout,
