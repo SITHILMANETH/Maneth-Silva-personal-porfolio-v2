@@ -117,6 +117,20 @@ const dataportfolio = [
         details:
             "Battle Bot is focused on strong mechanical design, reliable drive control, protected electronics, and quick changes after testing or match damage.",
         highlights: ["Chassis design", "Drive system", "Impact testing"],
+        galleryPhotos: [
+            {
+                title: "Battle Bot photo 01",
+                src: "/projects/battle-bot/photos/FB_IMG_1759077448382.jpg",
+            },
+            {
+                title: "Battle Bot photo 02",
+                src: "/projects/battle-bot/photos/FB_IMG_1759077469722.jpg",
+            },
+            {
+                title: "Battle Bot photo 03",
+                src: "/projects/battle-bot/photos/Snapchat-1154343386.jpg",
+            },
+        ],
         youtubeVideos: [
             {
                 title: "Battle Bot test run 01",
@@ -144,6 +158,52 @@ const dataportfolio = [
         details:
             "HackX is the space for hackathon ideas, teamwork, quick research, prototyping, demo preparation, and explaining the solution clearly to judges.",
         highlights: ["Rapid prototype", "Team workflow", "Demo build"],
+        galleryPhotos: [
+            {
+                title: "HackX photo 01",
+                src: "/projects/hack-x/photos/IMG-20251112-WA0084(1).jpg",
+            },
+            {
+                title: "HackX photo 02",
+                src: "/projects/hack-x/photos/IMG-20251112-WA0086(1).jpg",
+            },
+            {
+                title: "HackX photo 03",
+                src: "/projects/hack-x/photos/IMG-20251112-WA0087(1).jpg",
+            },
+            {
+                title: "HackX photo 04",
+                src: "/projects/hack-x/photos/IMG-20251112-WA0088(1).jpg",
+            },
+            {
+                title: "HackX photo 05",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0015(1).jpg",
+            },
+            {
+                title: "HackX photo 06",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0016.jpg",
+            },
+            {
+                title: "HackX photo 07",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0019(1).jpg",
+            },
+            {
+                title: "HackX photo 08",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0021(2).jpg",
+            },
+            {
+                title: "HackX photo 09",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0028(1).jpg",
+            },
+            {
+                title: "HackX photo 10",
+                src: "/projects/hack-x/photos/IMG-20251114-WA0029(4).jpg",
+            },
+            {
+                title: "HackX photo 11",
+                src: "/projects/hack-x/photos/IMG-20251120-WA0016.jpg",
+            },
+        ],
         ...buildMedia("hack-x"),
     },
     {

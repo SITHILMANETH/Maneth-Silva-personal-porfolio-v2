@@ -61,6 +61,12 @@ const ProjectCard = ({ project, index, onSelect }) => {
         </div>
       )}
 
+      {project.galleryPhotos?.length > 0 && (
+        <div className="project_photo_count">
+          {project.galleryPhotos.length} photos added
+        </div>
+      )}
+
       <div className="project_media_grid" aria-label={`${project.title} media slots`}>
         <div className="project_media_slot">
           {photoReady ? (
@@ -138,6 +144,26 @@ const ProjectDetails = ({ project, onClose }) => {
         <div className="project_modal__media-note">
           Media folder: <code>public{project.folder}</code>
         </div>
+
+        {project.galleryPhotos?.length > 0 && (
+          <div className="project_modal__photos">
+            <h3>Project Photos</h3>
+            <div className="project_photo_gallery">
+              {project.galleryPhotos.map((photo) => (
+                <a
+                  className="project_photo_item"
+                  href={publicPath(photo.src)}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={photo.src}
+                >
+                  <img src={publicPath(photo.src)} alt={photo.title} loading="lazy" />
+                  <span>{photo.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {project.youtubeVideos?.length > 0 && (
           <div className="project_modal__videos">
