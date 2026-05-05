@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
@@ -14,12 +14,33 @@ const MissingMedia = ({ type, path }) => (
   </div>
 );
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, onSelect }) => {
   const [photoReady, setPhotoReady] = useState(true);
   const [videoReady, setVideoReady] = useState(true);
+  const openProject = (event) => {
+    if (event.target.closest("button, video, a")) {
+      return;
+    }
+    onSelect(project);
+  };
+
+  const openProjectFromKeyboard = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onSelect(project);
+    }
+  };
 
   return (
-    <article className="project_card" style={{ "--delay": `${index * 80}ms` }}>
+    <article
+      className="project_card"
+      style={{ "--delay": `${index * 80}ms` }}
+      role="button"
+      tabIndex="0"
+      onClick={openProject}
+      onKeyDown={openProjectFromKeyboard}
+      aria-label={`Open ${project.title} description`}
+    >
       <div className="project_card__topline">
         <span>{project.tag}</span>
         <span className="project_card__number">{String(index + 1).padStart(2, "0")}</span>
@@ -62,11 +83,63 @@ const ProjectCard = ({ project, index }) => {
       <div className="project_folder_note">
         Drop media in <code>public{project.folder}</code>
       </div>
+
+      <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
+        Read about this project
+      </button>
     </article>
   );
 };
 
+const ProjectDetails = ({ project, onClose }) => {
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [onClose]);
+
+  return (
+    <div className="project_modal" role="presentation" onClick={onClose}>
+      <section
+        className="project_modal__card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button className="project_modal__close" type="button" onClick={onClose} aria-label="Close project description">
+          Close
+        </button>
+
+        <p className="project_modal__tag">{project.tag}</p>
+        <h2 id="project-modal-title">{project.title}</h2>
+        <p className="project_modal__description">{project.details || project.description}</p>
+
+        <div className="project_modal__section">
+          <h3>What it shows</h3>
+          <ul>
+            {project.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="project_modal__media-note">
+          Media folder: <code>public{project.folder}</code>
+        </div>
+      </section>
+    </div>
+  );
+};
+
 export const Portfolio = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <HelmetProvider>
       <Container className="portfolio_page">
@@ -83,14 +156,18 @@ export const Portfolio = () => {
             <p className="portfolio_intro">
               Each project card has a photo and video slot ready for your real build media.
               Add <code>cover.jpg</code> and <code>demo.mp4</code> inside the matching folder to replace the placeholders.
+              Click any project to read a short description.
             </p>
           </Col>
         </Row>
         <div className="project_grid">
           {dataportfolio.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+            <ProjectCard key={project.title} project={project} index={i} onSelect={setSelectedProject} />
           ))}
         </div>
+        {selectedProject && (
+          <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
+        )}
       </Container>
     </HelmetProvider>
   );

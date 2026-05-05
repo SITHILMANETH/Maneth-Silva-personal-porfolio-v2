@@ -104,6 +104,8 @@ const dataportfolio = [
         tag: "Autonomous robotics",
         description:
             "A maze-solving robot project focused on sensing, motor control, path planning, and fast decision making inside a maze.",
+        details:
+            "This project is about building a small autonomous robot that can understand a maze, follow walls or sensor readings, choose paths, and improve its movement through testing.",
         highlights: ["Maze navigation", "Sensor tuning", "Control algorithms"],
         ...buildMedia("micro-mouse"),
     },
@@ -112,6 +114,8 @@ const dataportfolio = [
         tag: "Combat robotics",
         description:
             "A rugged robot build for robot-battle challenges, balancing drive power, weapon strategy, durability, and quick repairs.",
+        details:
+            "Battle Bot is focused on strong mechanical design, reliable drive control, protected electronics, and quick changes after testing or match damage.",
         highlights: ["Chassis design", "Drive system", "Impact testing"],
         ...buildMedia("battle-bot"),
     },
@@ -120,6 +124,8 @@ const dataportfolio = [
         tag: "Hackathon project",
         description:
             "A fast-build innovation project from ideation to demo, shaped for pitching, prototyping, and solving a real problem under time pressure.",
+        details:
+            "HackX is the space for hackathon ideas, teamwork, quick research, prototyping, demo preparation, and explaining the solution clearly to judges.",
         highlights: ["Rapid prototype", "Team workflow", "Demo build"],
         ...buildMedia("hack-x"),
     },
@@ -128,6 +134,8 @@ const dataportfolio = [
         tag: "Space + data app",
         description:
             "An app idea inspired by space, science, and public datasets, designed to turn complex information into something people can explore.",
+        details:
+            "NASA App collects space-inspired ideas, interface experiments, and data-driven features that make science information easier to understand.",
         highlights: ["Space data", "App design", "Public impact"],
         ...buildMedia("nasa-app"),
     },
@@ -136,6 +144,8 @@ const dataportfolio = [
         tag: "IoT + embedded systems",
         description:
             "A smart fan concept that can react to environment data and user settings, combining sensors, control logic, and automation.",
+        details:
+            "Smart Fan combines sensor readings, simple automation logic, and embedded control so the fan can respond to temperature or user preferences.",
         highlights: ["Temperature sensing", "Automation", "Embedded control"],
         ...buildMedia("smart-fan"),
     },
@@ -144,6 +154,8 @@ const dataportfolio = [
         tag: "Machine learning",
         description:
             "A classifier for filtering emails using Naive Bayes, text preprocessing, probability scoring, and practical spam-detection logic.",
+        details:
+            "This machine learning project uses text cleaning, word probabilities, and Naive Bayes classification to separate useful emails from spam-like messages.",
         highlights: ["Text classification", "Spam filtering", "Model evaluation"],
         ...buildMedia("naive-bayes-email-filter"),
     },
@@ -152,6 +164,8 @@ const dataportfolio = [
         tag: "Robot simulation",
         description:
             "Robot simulations built in Webots to test movement, sensors, robot behavior, and ideas before building hardware.",
+        details:
+            "Webots Projects are for testing robot behavior in simulation first, including movement, sensor response, control code, and environment interactions.",
         highlights: ["Simulation", "Robot behavior", "Sensor testing"],
         ...buildMedia("webots-projects"),
     },
@@ -160,6 +174,8 @@ const dataportfolio = [
         tag: "Electronics design",
         description:
             "A collection space for PCB layouts, circuit experiments, board photos, schematic screenshots, and tested electronics modules.",
+        details:
+            "PCB work documents circuit planning, component placement, board layouts, soldering, testing, and the electronics that support robot builds.",
         highlights: ["Circuit design", "Board layout", "Hardware testing"],
         ...buildMedia("pcb"),
     },
@@ -168,6 +184,8 @@ const dataportfolio = [
         tag: "Bio-inspired robotics",
         description:
             "A scorpion-inspired robot concept for exploring movement, mechanism design, expressive robotics, and sensor-driven behavior.",
+        details:
+            "Scorpion Robot explores character-like robot motion, mechanical structure, and sensor-based behavior inspired by the shape and movement of a scorpion.",
         highlights: ["Mechanisms", "Motion design", "Robot character"],
         ...buildMedia("scorpion-robot"),
     },
@@ -176,6 +194,8 @@ const dataportfolio = [
         tag: "Computer vision",
         description:
             "A vision project for detecting objects in images or video, with room to show test clips, dataset examples, and model results.",
+        details:
+            "Object Detection focuses on camera input, model testing, detection results, and showing how computer vision can help robots or apps understand a scene.",
         highlights: ["Detection model", "Camera input", "Real-time testing"],
         ...buildMedia("object-detection"),
     },
@@ -194,8 +214,8 @@ const contactConfig = {
 
 const socialprofils = {
     github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    youtube: "https://youtube.com",
+    linkedin: "https://www.linkedin.com/in/maneth-silva-98844a19a",
+    youtube: "https://www.youtube.com/@manethsilva9515",
 };
 
 export {
