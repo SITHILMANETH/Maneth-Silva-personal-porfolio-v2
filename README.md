@@ -1,38 +1,43 @@
-### Description
+# Manet Robotics and AI Portfolio
 
-A simple portfolio template for developer/designers built with React. 
+Live website:
+https://sithilmaneth.github.io/Maneth-Silva-personal-porfolio-v2/
 
-### [live preview](https://ubaimutl.github.io/react-portfolio/)
+This is my personal portfolio for robotics, AI, electronics, PCB work, Webots projects, and competition builds.
 
-[![react portfoiio](src/assets/images/react%20portfolio%20gif.gif)](https://ubaimutl.github.io/react-portfolio/)
+## Projects
 
-### Features
+- Micro Mouse
+- Battle Bot
+- HackX
+- NASA App
+- Smart Fan
+- Naive Bayes Email Filter
+- Webots Projects
+- PCB
+- Scorpion Robot
+- Object Detection
 
-- Fully Responsive
-- Multi-Page Layout
-- Contact Form With EmailJs
-- React-Bootstrap
-- Edit Content From One Place
+## Add Project Media
 
-### Setup
+Each project has folders for photos and videos inside `public/projects/`.
 
-Get the code
+Use these filenames to show media on the website:
 
-<pre>git clone https://github.com/ubaimutl/react-portfolio.git</pre>
- 
-Install required dependencies
+- `photos/cover.jpg`
+- `videos/demo.mp4`
 
-<pre>yarn install</pre>
+## Run Locally
 
+```powershell
+yarn.cmd start
+```
 
-Start the server
+Local site:
+http://localhost:3000
 
-<pre>yarn start</pre>
+## Deploy To GitHub Pages
 
-### More
-
-Modify pages content in  `src/content_option.js`.
-
-### Thanks
-
-If you like this portfolio template don't forget give it a ⭐ 
+```powershell
+yarn.cmd deploy
+```
