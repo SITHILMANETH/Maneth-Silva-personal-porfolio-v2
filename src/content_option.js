@@ -117,6 +117,23 @@ const dataportfolio = [
         details:
             "Battle Bot is focused on strong mechanical design, reliable drive control, protected electronics, and quick changes after testing or match damage.",
         highlights: ["Chassis design", "Drive system", "Impact testing"],
+        youtubeVideos: [
+            {
+                title: "Battle Bot test run 01",
+                url: "https://youtu.be/IVeNeMpzEO8",
+                embed: "https://www.youtube.com/embed/IVeNeMpzEO8",
+            },
+            {
+                title: "Battle Bot test run 02",
+                url: "https://youtu.be/vpn60O3UuKc",
+                embed: "https://www.youtube.com/embed/vpn60O3UuKc",
+            },
+            {
+                title: "Battle Bot test run 03",
+                url: "https://youtu.be/dsOZVHYid2k",
+                embed: "https://www.youtube.com/embed/dsOZVHYid2k",
+            },
+        ],
         ...buildMedia("battle-bot"),
     },
     {
@@ -202,10 +219,11 @@ const dataportfolio = [
 ];
 
 const contactConfig = {
-    YOUR_EMAIL: "your-email@example.com",
+    YOUR_EMAIL: "",
     YOUR_FONE: "",
     description:
         "Have an idea for a robot, AI experiment, electronics build, or competition project? Send a message and let's build something useful.",
+    availability: "Open for robotics, AI, PCB, and student innovation collaborations.",
     // Create an emailjs.com account and replace these IDs before using the form in production.
     YOUR_SERVICE_ID: "service_id",
     YOUR_TEMPLATE_ID: "template_id",
@@ -213,7 +231,7 @@ const contactConfig = {
 };
 
 const socialprofils = {
-    github: "https://github.com",
+    github: "https://github.com/SITHILMANETH",
     linkedin: "https://www.linkedin.com/in/maneth-silva-98844a19a",
     youtube: "https://www.youtube.com/@manethsilva9515",
 };

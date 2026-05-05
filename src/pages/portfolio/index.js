@@ -55,6 +55,12 @@ const ProjectCard = ({ project, index, onSelect }) => {
         ))}
       </ul>
 
+      {project.youtubeVideos?.length > 0 && (
+        <div className="project_video_count">
+          {project.youtubeVideos.length} YouTube videos added
+        </div>
+      )}
+
       <div className="project_media_grid" aria-label={`${project.title} media slots`}>
         <div className="project_media_slot">
           {photoReady ? (
@@ -132,6 +138,28 @@ const ProjectDetails = ({ project, onClose }) => {
         <div className="project_modal__media-note">
           Media folder: <code>public{project.folder}</code>
         </div>
+
+        {project.youtubeVideos?.length > 0 && (
+          <div className="project_modal__videos">
+            <h3>Battle Bot Videos</h3>
+            <div className="project_video_gallery">
+              {project.youtubeVideos.map((video) => (
+                <div className="project_video_embed" key={video.url}>
+                  <iframe
+                    src={video.embed}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                  <a href={video.url} target="_blank" rel="noreferrer">
+                    {video.title}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );
