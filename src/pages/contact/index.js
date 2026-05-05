@@ -224,6 +224,8 @@ export const ContactUs = () => {
                     value={formData.projectType}
                     onChange={handleChange}
                   >
+                    <option>3D design / printing</option>
+                    <option>PCB design</option>
                     <option>Robotics project</option>
                     <option>AI / machine learning</option>
                     <option>PCB / electronics</option>

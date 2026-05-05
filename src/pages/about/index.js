@@ -2,12 +2,15 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
+import { FaFilePdf } from "react-icons/fa";
 import {
   dataabout,
   meta,
   worktimeline,
   services,
 } from "../../content_option";
+
+const publicPath = (path) => `${process.env.PUBLIC_URL}${path}`;
 
 export const About = () => {
   return (
@@ -31,7 +34,18 @@ export const About = () => {
           </Col>
           <Col lg="7" className="d-flex align-items-center">
             <div>
-              <p>{dataabout.aboutme}</p>
+              {dataabout.aboutme.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <a
+                className="about_cv_button"
+                href={publicPath(dataabout.cv)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaFilePdf aria-hidden="true" />
+                View CV
+              </a>
             </div>
           </Col>
         </Row>

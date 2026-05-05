@@ -19,8 +19,7 @@
     max-width: 780px;
 }
 
-.portfolio_intro code,
-.project_folder_note code {
+.portfolio_intro code {
     color: var(--accent-color-2);
     background: var(--code-bg-color);
     border: 1px solid var(--line-color);
@@ -184,6 +183,13 @@
     background: #050807;
 }
 
+.protected_photo,
+.project_photo_item {
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
 .media_placeholder {
     min-height: 210px;
     height: 100%;
@@ -226,15 +232,6 @@
     font-size: 0.68rem;
     line-height: 1.55;
     word-break: break-word;
-}
-
-.project_folder_note {
-    position: relative;
-    z-index: 1;
-    margin-top: 1rem;
-    color: var(--muted-color);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.76rem;
 }
 
 .project_read_more {
@@ -400,12 +397,24 @@
 
 .project_photo_item {
     position: relative;
+    width: 100%;
     min-height: 145px;
+    padding: 0;
     overflow: hidden;
     border: 1px solid var(--line-color);
     border-radius: 20px;
+    appearance: none;
     background: #050807;
+    color: inherit;
+    cursor: zoom-in;
+    font: inherit;
+    text-align: left;
     text-decoration: none;
+}
+
+.project_photo_item:focus-visible {
+    outline: 3px solid var(--accent-color-2);
+    outline-offset: 4px;
 }
 
 .project_photo_item img {
@@ -435,6 +444,72 @@
 .project_photo_item:hover img {
     transform: scale(1.06);
     opacity: 0.88;
+}
+
+.project_photo_preview {
+    position: fixed;
+    inset: 0;
+    z-index: 10000000;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgba(3, 9, 8, 0.86);
+    backdrop-filter: blur(18px);
+    animation: modal-fade 180ms ease both;
+}
+
+.project_photo_preview__frame {
+    position: relative;
+    width: min(980px, 100%);
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0;
+}
+
+.project_photo_preview__frame img {
+    width: 100%;
+    max-height: min(78vh, 760px);
+    display: block;
+    border: 1px solid var(--line-strong-color);
+    border-radius: 24px;
+    object-fit: contain;
+    background: #050807;
+    box-shadow: 0 34px 120px rgba(0, 0, 0, 0.54);
+}
+
+.project_photo_preview__frame figcaption {
+    align-self: center;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line-color);
+    border-radius: 999px;
+    color: var(--text-color);
+    background: rgba(0, 0, 0, 0.42);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.project_photo_preview__close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    z-index: 1;
+    padding: 0.5rem 0.72rem;
+    border: 1px solid var(--line-strong-color);
+    border-radius: 999px;
+    color: var(--text-color);
+    background: rgba(0, 0, 0, 0.56);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.project_photo_preview__close:hover,
+.project_photo_preview__close:focus-visible {
+    color: var(--primary-color);
+    background: var(--accent-color-2);
 }
 
 .project_video_gallery {
@@ -547,6 +622,11 @@
 @media (max-width: 520px) {
     .project_photo_gallery {
         grid-template-columns: 1fr;
+    }
+
+    .project_photo_preview__frame img {
+        max-height: 72vh;
+        border-radius: 18px;
     }
 }
 

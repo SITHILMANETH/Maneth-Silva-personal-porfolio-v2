@@ -6,6 +6,15 @@ import { dataportfolio, meta } from "../../content_option";
 
 const publicPath = (path) => `${process.env.PUBLIC_URL}${path}`;
 
+const blockPhotoDownload = (event) => event.preventDefault();
+
+const protectedPhotoProps = {
+  draggable: false,
+  onContextMenu: blockPhotoDownload,
+  onDragStart: blockPhotoDownload,
+  onCopy: blockPhotoDownload,
+};
+
 const MissingMedia = ({ type, path }) => (
   <div className="media_placeholder">
     <span className="media_placeholder__icon">{type === "photo" ? "IMG" : "MP4"}</span>
@@ -71,6 +80,8 @@ const ProjectCard = ({ project, index, onSelect }) => {
         <div className="project_media_slot">
           {photoReady ? (
             <img
+              {...protectedPhotoProps}
+              className="protected_photo"
               src={publicPath(project.photo)}
               alt={`${project.title} project`}
               onError={() => setPhotoReady(false)}
@@ -92,10 +103,6 @@ const ProjectCard = ({ project, index, onSelect }) => {
         </div>
       </div>
 
-      <div className="project_folder_note">
-        Drop media in <code>public{project.folder}</code>
-      </div>
-
       <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
         Read about this project
       </button>
@@ -104,90 +111,141 @@ const ProjectCard = ({ project, index, onSelect }) => {
 };
 
 const ProjectDetails = ({ project, onClose }) => {
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
   useEffect(() => {
     const closeOnEscape = (event) => {
       if (event.key === "Escape") {
+        if (selectedPhoto) {
+          setSelectedPhoto(null);
+          return;
+        }
+
         onClose();
       }
     };
 
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [onClose]);
+  }, [onClose, selectedPhoto]);
 
   return (
-    <div className="project_modal" role="presentation" onClick={onClose}>
-      <section
-        className="project_modal__card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-modal-title"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <button className="project_modal__close" type="button" onClick={onClose} aria-label="Close project description">
-          Close
-        </button>
+    <>
+      <div className="project_modal" role="presentation" onClick={onClose}>
+        <section
+          className="project_modal__card"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <button className="project_modal__close" type="button" onClick={onClose} aria-label="Close project description">
+            Close
+          </button>
 
-        <p className="project_modal__tag">{project.tag}</p>
-        <h2 id="project-modal-title">{project.title}</h2>
-        <p className="project_modal__description">{project.details || project.description}</p>
+          <p className="project_modal__tag">{project.tag}</p>
+          <h2 id="project-modal-title">{project.title}</h2>
+          <p className="project_modal__description">{project.details || project.description}</p>
 
-        <div className="project_modal__section">
-          <h3>What it shows</h3>
-          <ul>
-            {project.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="project_modal__media-note">
-          Media folder: <code>public{project.folder}</code>
-        </div>
-
-        {project.galleryPhotos?.length > 0 && (
-          <div className="project_modal__photos">
-            <h3>Project Photos</h3>
-            <div className="project_photo_gallery">
-              {project.galleryPhotos.map((photo) => (
-                <a
-                  className="project_photo_item"
-                  href={publicPath(photo.src)}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={photo.src}
-                >
-                  <img src={publicPath(photo.src)} alt={photo.title} loading="lazy" />
-                  <span>{photo.title}</span>
-                </a>
+          <div className="project_modal__section">
+            <h3>What it shows</h3>
+            <ul>
+              {project.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
               ))}
-            </div>
+            </ul>
           </div>
-        )}
 
-        {project.youtubeVideos?.length > 0 && (
-          <div className="project_modal__videos">
-            <h3>Battle Bot Videos</h3>
-            <div className="project_video_gallery">
-              {project.youtubeVideos.map((video) => (
-                <div className="project_video_embed" key={video.url}>
-                  <iframe
-                    src={video.embed}
-                    title={video.title}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                  <a href={video.url} target="_blank" rel="noreferrer">
-                    {video.title}
-                  </a>
-                </div>
-              ))}
-            </div>
+          <div className="project_modal__media-note">
+            Media folder: <code>public{project.folder}</code>
           </div>
-        )}
-      </section>
-    </div>
+
+          {project.galleryPhotos?.length > 0 && (
+            <div className="project_modal__photos">
+              <h3>Project Photos</h3>
+              <div className="project_photo_gallery">
+                {project.galleryPhotos.map((photo) => (
+                  <button
+                    className="project_photo_item"
+                    key={photo.src}
+                    type="button"
+                    aria-label={`Enlarge ${photo.title}`}
+                    onClick={() => setSelectedPhoto(photo)}
+                    onContextMenu={blockPhotoDownload}
+                    onCopy={blockPhotoDownload}
+                  >
+                    <img
+                      {...protectedPhotoProps}
+                      className="protected_photo"
+                      src={publicPath(photo.src)}
+                      alt={photo.title}
+                      loading="lazy"
+                    />
+                    <span>{photo.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.youtubeVideos?.length > 0 && (
+            <div className="project_modal__videos">
+              <h3>Battle Bot Videos</h3>
+              <div className="project_video_gallery">
+                {project.youtubeVideos.map((video) => (
+                  <div className="project_video_embed" key={video.url}>
+                    <iframe
+                      src={video.embed}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                    <a href={video.url} target="_blank" rel="noreferrer">
+                      {video.title}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
+
+      {selectedPhoto && (
+        <div
+          className="project_photo_preview"
+          role="presentation"
+          onClick={() => setSelectedPhoto(null)}
+          onContextMenu={blockPhotoDownload}
+          onCopy={blockPhotoDownload}
+        >
+          <figure
+            className="project_photo_preview__frame"
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedPhoto.title}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="project_photo_preview__close"
+              type="button"
+              onClick={() => setSelectedPhoto(null)}
+              aria-label="Close enlarged photo"
+            >
+              Close
+            </button>
+            <img
+              {...protectedPhotoProps}
+              className="protected_photo"
+              src={publicPath(selectedPhoto.src)}
+              alt={selectedPhoto.title}
+            />
+            <figcaption>{selectedPhoto.title}</figcaption>
+          </figure>
+        </div>
+      )}
+    </>
   );
 };
 

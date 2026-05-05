@@ -19,9 +19,15 @@ const introdata = {
 };
 
 const dataabout = {
-    title: "A bit about my maker side",
-    aboutme:
-        "I like turning ideas into machines that move, sense, and react. My work blends robotics, embedded systems, PCB design, computer vision, simulations, and practical AI experiments. This portfolio is now set up like a project lab, with room to add real photos and videos for each build as it grows.",
+    title: "About me",
+    cv: "/maneth-silva-cv.pdf",
+    aboutme: [
+        "I'm Maneth Silva, a robotics and artificial intelligence undergraduate passionate about building intelligent systems that bridge software, hardware, and real world environments. My focus is on developing autonomous machines and AI driven systems that can perceive, decide, and act in dynamic conditions.",
+        "I am particularly interested in robotics, machine learning, embedded systems, and human centered AI applications. I enjoy working on projects that combine multiple disciplines such as control systems, computer vision, and intelligent decision making to create functional and interactive machines rather than just simulations or theory based models.",
+        "Through my academic journey and personal projects, I have been exploring areas like autonomous navigation, hybrid robotic behavior, and AI powered companion systems. I like building systems from the ground up, starting from understanding the problem, designing the architecture, implementing algorithms, and testing them in real environments.",
+        "My long term goal is to contribute to the development of intelligent robotic systems that can operate safely and effectively in real world scenarios, whether that is in automation, assistance, exploration, or human interaction. I am continuously learning and improving my skills in AI, robotics frameworks, and system design to move closer to that goal.",
+        "Outside of technical work, I am someone who enjoys breaking down complex problems into simple logical systems and experimenting with new ideas that push my understanding of how intelligent machines work.",
+    ],
 };
 
 const worktimeline = [
@@ -92,6 +98,34 @@ const services = [
     },
 ];
 
+const openForWork = {
+    title: "Open for Work",
+    badge: "CAD + PCB commissions",
+    intro:
+        "I am open for small 3D design, 3D printing, and PCB design work. Send the project idea, dimensions, reference images, or circuit requirements and I will reply with the next steps.",
+    email: "manethsilva@proton.me",
+    fileDropUrl: "https://wormhole.app/",
+    fileDropTitle: "Share project files with Wormhole",
+    fileDropDescription:
+        "Upload your CAD references, sketches, images, Gerbers, schematics, or notes on Wormhole, then email me the share link with your project message.",
+    services: [
+        {
+            title: "3D Designing and Printing",
+            shortTitle: "3D Design",
+            description:
+                "Design your CAD model for printing, prototyping, robotics parts, enclosures, brackets, and custom mechanical ideas.",
+            details: ["CAD design", "3D print-ready files", "Prototype planning"],
+        },
+        {
+            title: "PCB Designing",
+            shortTitle: "PCB Design",
+            description:
+                "Make your PCB design from a circuit idea, schematic, module layout, or electronics project requirement.",
+            details: ["Schematic cleanup", "PCB layout", "Gerber-ready output"],
+        },
+    ],
+};
+
 const buildMedia = (slug) => ({
     folder: `/projects/${slug}`,
     photo: `/projects/${slug}/photos/cover.jpg`,
@@ -124,10 +158,6 @@ const dataportfolio = [
             },
             {
                 title: "Battle Bot photo 02",
-                src: "/projects/battle-bot/photos/FB_IMG_1759077469722.jpg",
-            },
-            {
-                title: "Battle Bot photo 03",
                 src: "/projects/battle-bot/photos/Snapchat-1154343386.jpg",
             },
         ],
@@ -279,11 +309,11 @@ const dataportfolio = [
 ];
 
 const contactConfig = {
-    YOUR_EMAIL: "",
+    YOUR_EMAIL: "manethsilva@proton.me",
     YOUR_FONE: "",
     description:
-        "Have an idea for a robot, AI experiment, electronics build, or competition project? Send a message and let's build something useful.",
-    availability: "Open for robotics, AI, PCB, and student innovation collaborations.",
+        "Have a 3D design, 3D printing, PCB, robotics, AI, electronics, or competition idea? Send a message and include a Wormhole link if you have files to share.",
+    availability: "Open for 3D design, 3D printing, PCB design, robotics, AI, and student innovation collaborations.",
     // Create an emailjs.com account and replace these IDs before using the form in production.
     YOUR_SERVICE_ID: "service_id",
     YOUR_TEMPLATE_ID: "template_id",
@@ -303,6 +333,7 @@ export {
     worktimeline,
     skills,
     services,
+    openForWork,
     introdata,
     contactConfig,
     socialprofils,
