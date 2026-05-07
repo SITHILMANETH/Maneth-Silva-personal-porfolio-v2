@@ -6,7 +6,7 @@ import { logotext } from "../content_option";
 import Themetoggle from "../components/themetoggle";
 
 const navItems = [
-  { label: "Work", to: "/portfolio" },
+  { label: "Work", to: "/" },
   { label: "Services", to: "/open-for-work" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
@@ -35,6 +35,7 @@ const Headermain = () => {
             <NavLink
               key={item.to}
               to={item.to}
+              end={item.to === "/"}
               className={({ isActive }) => (isActive ? "is-active" : undefined)}
             >
               {item.label}
@@ -63,7 +64,7 @@ const Headermain = () => {
         aria-label="Mobile navigation"
       >
         {navItems.map((item) => (
-          <NavLink key={item.to} to={item.to} onClick={closeMenu}>
+          <NavLink key={item.to} to={item.to} end={item.to === "/"} onClick={closeMenu}>
             {item.label}
           </NavLink>
         ))}

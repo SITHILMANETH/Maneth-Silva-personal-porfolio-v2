@@ -277,11 +277,11 @@ export const Portfolio = () => {
       <main className="portfolio_page">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Projects | {meta.title}</title>
+          <title>Work | {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
         <Container>
-          <PageIntro eyebrow="Project log" title="Builds, notes, and half-solved problems.">
+          <PageIntro eyebrow="Work log" title="Builds, notes, and half-solved problems.">
             <p>
               These are not case studies polished into identical boxes. They are project entries:
               what each one is about, what it touches, and where the media belongs when the build is documented.
