@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="SB monogram">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="MS monogram">
   <rect width="128" height="128" fill="#18181B"/>
   <rect x="14" y="14" width="100" height="100" fill="#FAFAFA" stroke="#D4D4D8" stroke-width="6"/>
-  <path d="M31 82c5 5 14 8 23 8 13 0 23-6 23-17 0-10-8-14-20-17-9-2-13-4-13-8 0-4 4-7 11-7 6 0 12 2 17 6l7-10c-6-5-14-8-24-8-14 0-24 8-24 19 0 12 9 15 22 18 8 2 11 4 11 8 0 4-4 6-11 6-7 0-14-3-20-8l-2 10z" fill="#18181B"/>
-  <path d="M77 40h16c11 0 18 5 18 14 0 5-3 10-8 12 6 2 10 7 10 14 0 11-8 17-21 17H77V40zm15 22c4 0 7-2 7-6s-3-6-7-6h-3v12h3zm1 25c5 0 8-3 8-7s-3-7-8-7h-4v14h4z" fill="#18181B"/>
+  <path d="M30 88V40h10l24 30 24-30h10v48H84V62L66 85h-4L44 62v26H30z" fill="#18181B"/>
   <path d="M28 100h72" stroke="#F97316" stroke-width="6" stroke-linecap="square"/>
 </svg>

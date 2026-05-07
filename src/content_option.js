@@ -1,19 +1,9 @@
-const logotext = "Student Business Starter";
+const logotext = "Maneth Silva";
 
 const meta = {
-    title: "How to Start Your First Business as a Student",
+    title: "Maneth Silva | Robotics, PCB, and Practical Software",
     description:
-        "A focused watch page for Gohar Khan's guide to starting a first business as a student.",
-};
-
-const featuredVideo = {
-    id: "IFVTUxTkzb0",
-    title: "how to start your first business (as a student)",
-    author: "Gohar Khan",
-    authorUrl: "https://www.youtube.com/@goharsguide",
-    watchUrl: "https://www.youtube.com/watch?v=IFVTUxTkzb0",
-    embedUrl: "https://www.youtube-nocookie.com/embed/IFVTUxTkzb0?rel=0&modestbranding=1",
-    thumbnail: "https://i.ytimg.com/vi/IFVTUxTkzb0/hqdefault.jpg",
+        "A personal portfolio of robotics builds, PCB work, machine learning experiments, and notes from the workbench.",
 };
 
 const introdata = {
@@ -268,5 +258,4 @@ export {
     contactConfig,
     socialprofils,
     logotext,
-    featuredVideo,
 };

@@ -1,26 +1,26 @@
 import React from "react";
 import "./style.css";
-import { featuredVideo } from "../../content_option";
+import { socialprofils } from "../../content_option";
+
+const LABELS = {
+  github: "GitHub",
+  linkedin: "LinkedIn",
+  youtube: "YouTube",
+};
 
 export const Socialicons = () => {
   return (
     <footer className="site_socials">
       <div>
-        <p>Video source</p>
+        <p>Elsewhere</p>
         <ul>
-          <li>
-            <a href={featuredVideo.watchUrl} target="_blank" rel="noreferrer">
-              Watch on YouTube
-            </a>
-          </li>
-          <li>
-            <a href={featuredVideo.authorUrl} target="_blank" rel="noreferrer">
-              {featuredVideo.author}
-            </a>
-          </li>
-          <li>
-            <a href="#top">Back to top</a>
-          </li>
+          {Object.entries(socialprofils).map(([platform, url]) => (
+            <li key={platform}>
+              <a href={url} target="_blank" rel="noreferrer">
+                {LABELS[platform] || platform}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </footer>

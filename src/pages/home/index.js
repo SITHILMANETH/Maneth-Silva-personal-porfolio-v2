@@ -1,141 +1,88 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { FiArrowUpRight, FiCheck, FiPlay } from "react-icons/fi";
-import { featuredVideo, meta } from "../../content_option";
+import { Link } from "react-router-dom";
+import { dataportfolio, introdata, meta, services } from "../../content_option";
 
-const planSteps = [
-  "Choose a problem you already see every week on campus or at home.",
-  "Talk to five people before naming the product.",
-  "Sell the smallest useful version first, then improve it with real feedback.",
+const benchNotes = [
+  "Micro mouse sensor readings are still the first thing I check before changing code.",
+  "Battle bot testing keeps reminding me that repair access is a design feature.",
+  "PCB notes are being kept close to each project so future-me can actually use them.",
 ];
-
-const resources = [
-  {
-    title: "One-page idea test",
-    detail: "Problem, buyer, simple offer, price, and the first person you will ask.",
-  },
-  {
-    title: "Weekend prototype",
-    detail: "A landing page, a form, a demo, or a service trial is enough to learn.",
-  },
-  {
-    title: "No vanity metrics",
-    detail: "Track conversations, sign-ups, pre-orders, and paid work instead.",
-  },
-];
-
-function VideoPlayer() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  if (isLoaded) {
-    return (
-      <iframe
-        src={featuredVideo.embedUrl}
-        title={featuredVideo.title}
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      />
-    );
-  }
-
-  return (
-    <button
-      className="video_poster"
-      type="button"
-      onClick={() => setIsLoaded(true)}
-      aria-label={`Play ${featuredVideo.title}`}
-    >
-      <img src={featuredVideo.thumbnail} alt="" loading="eager" />
-      <span className="video_poster__scrim" aria-hidden="true" />
-      <span className="video_poster__play">
-        <FiPlay aria-hidden="true" />
-        Play video
-      </span>
-    </button>
-  );
-}
 
 export const Home = () => {
+  const featuredProjects = dataportfolio.slice(0, 4);
+
   return (
     <HelmetProvider>
-      <main id="top" className="video_site">
+      <main id="home" className="home">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
 
-        <section className="video_hero" aria-labelledby="site-title">
-          <div className="video_hero__copy">
-            <p className="eyebrow">Student business guide</p>
-            <h1 id="site-title">How to start your first business as a student.</h1>
-            <p>
-              A clean watch page for Gohar Khan's short guide. No hype wall, no fake startup
-              theater, just the video and a few useful prompts for taking action after it.
-            </p>
-            <div className="video_actions" aria-label="Primary actions">
-              <a className="button_link" href="#watch">Watch here</a>
-              <a
-                className="button_link button_link--quiet"
-                href={featuredVideo.watchUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open on YouTube <FiArrowUpRight aria-hidden="true" />
-              </a>
+        <section className="home_hero" aria-labelledby="home-title">
+          <div className="home_hero__copy">
+            <p className="eyebrow">{introdata.badge}</p>
+            <h1 id="home-title">{introdata.title}</h1>
+            <p>{introdata.description}</p>
+            <div className="home_actions" aria-label="Primary actions">
+              <Link className="button_link" to="/portfolio">Read the project log</Link>
+              <Link className="button_link button_link--quiet" to="/contact">Start a conversation</Link>
             </div>
           </div>
 
-          <aside className="source_note" aria-label="Video source">
-            <span>Video</span>
-            <strong>{featuredVideo.title}</strong>
-            <a href={featuredVideo.authorUrl} target="_blank" rel="noreferrer">
-              by {featuredVideo.author}
-            </a>
+          <aside className="bench_note" aria-label="Current bench notes">
+            <h2>On the bench</h2>
+            <ul>
+              {benchNotes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
           </aside>
         </section>
 
-        <section id="watch" className="watch_section" aria-labelledby="watch-title">
-          <div className="section_heading">
-            <p className="eyebrow">Watch</p>
-            <h2 id="watch-title">Start with the video, then write down one move.</h2>
+        <section className="home_section build_areas" aria-labelledby="build-areas-title">
+          <div>
+            <p className="eyebrow">What shows up here</p>
+            <h2 id="build-areas-title">Practical builds, kept close to the work.</h2>
           </div>
-          <div className="video_frame">
-            <VideoPlayer />
-          </div>
-        </section>
-
-        <section id="plan" className="plan_section" aria-labelledby="plan-title">
-          <div className="section_heading">
-            <p className="eyebrow">Plan</p>
-            <h2 id="plan-title">A first business can be smaller than you think.</h2>
-          </div>
-          <ol>
-            {planSteps.map((step) => (
-              <li key={step}>
-                <FiCheck aria-hidden="true" />
-                <span>{step}</span>
-              </li>
+          <dl>
+            {services.map((service) => (
+              <div key={service.title}>
+                <dt>{service.title}</dt>
+                <dd>{service.description}</dd>
+              </div>
             ))}
-          </ol>
+          </dl>
         </section>
 
-        <section id="resources" className="resources_section" aria-labelledby="resources-title">
+        <section className="home_section project_notes" aria-labelledby="recent-work-title">
           <div className="section_heading">
-            <p className="eyebrow">Resources</p>
-            <h2 id="resources-title">Keep the first version honest.</h2>
+            <p className="eyebrow">Recent work</p>
+            <h2 id="recent-work-title">A few things worth opening first.</h2>
           </div>
-          <div className="resource_list">
-            {resources.map((item) => (
-              <article key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
+          <div className="project_notes__list">
+            {featuredProjects.map((project) => (
+              <article key={project.title}>
+                <p>{project.status}</p>
+                <h3>{project.title}</h3>
+                <span>{project.description}</span>
               </article>
             ))}
           </div>
+          <Link className="text_link" to="/portfolio">See all projects</Link>
+        </section>
+
+        <section className="home_section working_style" aria-labelledby="working-style-title">
+          <p className="eyebrow">How I work</p>
+          <h2 id="working-style-title">Small loops beat grand plans.</h2>
+          <ol>
+            <li>Start with the part that can be tested soonest.</li>
+            <li>Write down what failed while the details are still fresh.</li>
+            <li>Keep the interface simple enough that someone else can try it.</li>
+          </ol>
         </section>
       </main>
     </HelmetProvider>

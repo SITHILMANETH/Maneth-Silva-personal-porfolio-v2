@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logotext } from "../content_option";
 import Themetoggle from "../components/themetoggle";
 
 const navItems = [
-  { label: "Watch", href: "#watch" },
-  { label: "Plan", href: "#plan" },
-  { label: "Resources", href: "#resources" },
+  { label: "Work", to: "/portfolio" },
+  { label: "Services", to: "/open-for-work" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const Headermain = () => {
@@ -25,15 +26,19 @@ const Headermain = () => {
     <header className="site__header">
       <div className="site__header_inner">
         <Link className="site_brand" to="/" onClick={closeMenu}>
-          <span className="site_brand__mark" aria-hidden="true">SB</span>
+          <span className="site_brand__mark" aria-hidden="true">MS</span>
           <span>{logotext}</span>
         </Link>
 
         <nav className="site_nav" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) => (isActive ? "is-active" : undefined)}
+            >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
@@ -58,9 +63,9 @@ const Headermain = () => {
         aria-label="Mobile navigation"
       >
         {navItems.map((item) => (
-          <a key={item.href} href={item.href} onClick={closeMenu}>
+          <NavLink key={item.to} to={item.to} onClick={closeMenu}>
             {item.label}
-          </a>
+          </NavLink>
         ))}
       </nav>
     </header>

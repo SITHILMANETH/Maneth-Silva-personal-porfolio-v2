@@ -1,6 +1,6 @@
 {
-  "short_name": "Student Biz",
-  "name": "Student Business Starter",
+  "short_name": "Manet Lab",
+  "name": "Manet Robotics and AI Portfolio",
   "icons": [
     {
       "src": "robot-icon.svg",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#18181B",
-  "background_color": "#18181B"
+  "theme_color": "#071311",
+  "background_color": "#071311"
 }
