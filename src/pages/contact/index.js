@@ -2,7 +2,8 @@ import React, { useMemo, useState } from "react";
 import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
+import PageIntro from "../../components/pageintro";
 import { contactConfig, meta, socialprofils } from "../../content_option";
 
 const initialFormData = {
@@ -43,14 +44,14 @@ export const ContactUs = () => {
 
   const deliveryLabel = useMemo(() => {
     if (emailJsReady) {
-      return "Direct email delivery is ready.";
+      return "The form sends directly from the site.";
     }
 
     if (emailReady) {
-      return "This form opens an email draft addressed to me.";
+      return "The form opens your email app with the message filled in.";
     }
 
-    return "Add your email address to activate message delivery.";
+    return "The form is ready, but a receiving email still needs to be set.";
   }, [emailReady, emailJsReady]);
 
   const showAlert = (variant, alertmessage) => {
@@ -90,24 +91,21 @@ export const ContactUs = () => {
         setFormdata({
           ...initialFormData,
           show: true,
-          alertmessage: "Message sent. Thank you, I will get back to you soon.",
+          alertmessage: "Message sent. Thanks, I will read it soon.",
           variant: "success",
         });
         return;
       }
 
       if (!emailReady) {
-        showAlert(
-          "warning",
-          "The form is designed, but the receiving email is not set yet. Send me your email address and I will connect it."
-        );
+        showAlert("warning", "The receiving email is not set yet. Use a direct message link for now.");
         return;
       }
 
       window.location.href = buildMailtoLink(formData);
-      showAlert("success", "Your email app opened with the message ready to send.");
+      showAlert("success", "Your email app opened with a draft ready to review.");
     } catch (error) {
-      showAlert("danger", `Failed to prepare the message. ${error?.text || error?.message || "Please try again."}`);
+      showAlert("danger", `Could not prepare the message. ${error?.text || error?.message || "Please try again."}`);
     }
   };
 
@@ -120,44 +118,42 @@ export const ContactUs = () => {
 
   return (
     <HelmetProvider>
-      <Container className="contact_page">
+      <main className="contact_page">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title} | Contact</title>
           <meta name="description" content={meta.description} />
         </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="8">
-            <p className="eyebrow">Signal channel</p>
-            <h1 className="display-4 mb-4">Contact Me</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-            <p className="contact_intro">
-              Want to talk about robotics, AI, PCB work, simulations, or a competition idea? Send the details and I will know what kind of build you have in mind.
+
+        <Container>
+          <PageIntro eyebrow="Contact" title="Send the practical details.">
+            <p>
+              A useful first message includes what you are trying to build, what is already known,
+              and what is still uncertain. Short is fine. Specific is better.
             </p>
-          </Col>
-        </Row>
-        <Row className="sec_sp contact_layout">
-          <Col lg="12">
-            <Alert
-              variant={formData.variant}
-              className={`co_alert ${formData.show ? "d-block" : "d-none"}`}
-              onClose={() => setFormdata((current) => ({ ...current, show: false }))}
-              dismissible
-            >
-              <p className="my-0">{formData.alertmessage}</p>
-            </Alert>
-          </Col>
-          <Col lg="5" className="mb-5">
-            <div className="contact_panel">
-              <p className="contact_panel__label">Message route</p>
-              <h3>Let&apos;s build something useful.</h3>
-              <p>{contactConfig.description}</p>
+          </PageIntro>
+
+          <Alert
+            variant={formData.variant}
+            className={`co_alert ${formData.show ? "d-block" : "d-none"}`}
+            onClose={() => setFormdata((current) => ({ ...current, show: false }))}
+            dismissible
+          >
+            <p className="my-0">{formData.alertmessage}</p>
+          </Alert>
+
+          <section className="contact_layout">
+            <aside className="contact_panel">
+              <p className="eyebrow">Before you send</p>
+              <h2>What helps me reply well</h2>
+              <ul>
+                <li>What you want built, tested, or reviewed.</li>
+                <li>Photos, sketches, links, or files if they exist.</li>
+                <li>Any deadline, size limit, voltage, material, or budget constraint.</li>
+              </ul>
               <div className="contact_status">
                 <span className={emailReady || emailJsReady ? "is-live" : "is-waiting"}></span>
-                <div>
-                  <strong>{emailReady || emailJsReady ? "Contact path ready" : "Email setup needed"}</strong>
-                  <small>{deliveryLabel}</small>
-                </div>
+                <p>{deliveryLabel}</p>
               </div>
               {emailReady && (
                 <a className="contact_direct" href={`mailto:${contactConfig.YOUR_EMAIL}`}>
@@ -165,16 +161,15 @@ export const ContactUs = () => {
                 </a>
               )}
               <div className="contact_socials">
-                <a href={socialprofils.linkedin} target="_blank" rel="noreferrer">Message on LinkedIn</a>
-                <a href={socialprofils.youtube} target="_blank" rel="noreferrer">YouTube Channel</a>
+                <a href={socialprofils.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href={socialprofils.github} target="_blank" rel="noreferrer">GitHub</a>
+                <a href={socialprofils.youtube} target="_blank" rel="noreferrer">YouTube</a>
               </div>
-              <p className="contact_hint">{contactConfig.availability}</p>
-            </div>
-          </Col>
-          <Col lg="7" className="d-flex align-items-center">
-            <form onSubmit={handleSubmit} className="contact__form w-100">
-              <Row>
-                <Col lg="6" className="form-group">
+            </aside>
+
+            <form onSubmit={handleSubmit} className="contact__form">
+              <div className="form_grid">
+                <div className="form-group">
                   <label htmlFor="name">Your name</label>
                   <input
                     className="form-control"
@@ -186,8 +181,8 @@ export const ContactUs = () => {
                     required
                     onChange={handleChange}
                   />
-                </Col>
-                <Col lg="6" className="form-group">
+                </div>
+                <div className="form-group">
                   <label htmlFor="email">Reply email</label>
                   <input
                     className="form-control"
@@ -199,23 +194,24 @@ export const ContactUs = () => {
                     required
                     onChange={handleChange}
                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col lg="6" className="form-group">
+                </div>
+              </div>
+
+              <div className="form_grid">
+                <div className="form-group">
                   <label htmlFor="subject">Subject</label>
                   <input
                     className="form-control"
                     id="subject"
                     name="subject"
-                    placeholder="Project idea / collaboration"
+                    placeholder="PCB review / part design / robot idea"
                     value={formData.subject || ""}
                     type="text"
                     required
                     onChange={handleChange}
                   />
-                </Col>
-                <Col lg="6" className="form-group">
+                </div>
+                <div className="form-group">
                   <label htmlFor="projectType">Project type</label>
                   <select
                     className="form-control"
@@ -227,35 +223,36 @@ export const ContactUs = () => {
                     <option>3D design / printing</option>
                     <option>PCB design</option>
                     <option>Robotics project</option>
-                    <option>AI / machine learning</option>
-                    <option>PCB / electronics</option>
-                    <option>Competition / hackathon</option>
-                    <option>Other idea</option>
+                    <option>Computer vision / ML</option>
+                    <option>Electronics question</option>
+                    <option>Other practical idea</option>
                   </select>
-                </Col>
-              </Row>
+                </div>
+              </div>
+
               <label htmlFor="message">Message</label>
               <textarea
                 className="form-control"
                 id="message"
                 name="message"
-                placeholder="Tell me what you want to build, test, or discuss."
-                rows="6"
+                placeholder="Tell me the context, constraints, and what a useful reply would include."
+                rows="7"
                 value={formData.message}
                 onChange={handleChange}
                 required
               ></textarea>
+
               <div className="contact_actions">
                 <button className="btn ac_btn" type="submit">
                   {formData.loading ? "Preparing..." : emailJsReady ? "Send Message" : "Prepare Email"}
                 </button>
-                <span>{emailJsReady ? "Sends directly from the site." : "Opens your email app unless EmailJS is connected."}</span>
+                <span>{emailJsReady ? "Sent from the site." : "You can edit the email before sending."}</span>
               </div>
             </form>
-          </Col>
-        </Row>
-      </Container>
-      <div className={formData.loading ? "loading-bar" : "d-none"}></div>
+          </section>
+        </Container>
+        <div className={formData.loading ? "loading-bar" : "d-none"}></div>
+      </main>
     </HelmetProvider>
   );
 };

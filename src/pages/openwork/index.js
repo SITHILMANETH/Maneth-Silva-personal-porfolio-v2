@@ -1,30 +1,24 @@
 import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import {
-  FaCube,
-  FaEnvelope,
-  FaExternalLinkAlt,
-  FaMicrochip,
-  FaUpload,
-} from "react-icons/fa";
+  FiExternalLink,
+  FiMail,
+  FiUploadCloud,
+} from "react-icons/fi";
+import PageIntro from "../../components/pageintro";
 import { meta, openForWork } from "../../content_option";
 
-const ICONS = {
-  "3D Design": FaCube,
-  "PCB Design": FaMicrochip,
-};
-
 const buildProjectMail = () => {
-  const subject = encodeURIComponent("Open for work project request");
+  const subject = encodeURIComponent("Small build request");
   const body = encodeURIComponent(
     "Hi Maneth,\n\n" +
-      "Project type:\n" +
-      "Project details:\n" +
-      "Wormhole file link:\n" +
-      "Deadline:\n" +
-      "Budget range:\n\n" +
+      "What I need:\n" +
+      "Useful dimensions / constraints:\n" +
+      "Files or reference link:\n" +
+      "Deadline if any:\n" +
+      "Budget range if you have one:\n\n" +
       "Thanks!"
   );
 
@@ -34,83 +28,71 @@ const buildProjectMail = () => {
 export const OpenWork = () => {
   return (
     <HelmetProvider>
-      <Container className="open_work_page">
+      <main className="open_work_page">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{openForWork.title} | {meta.title}</title>
           <meta name="description" content={openForWork.intro} />
         </Helmet>
 
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="9">
-            <p className="eyebrow">{openForWork.badge}</p>
-            <h1 className="display-4 mb-4">{openForWork.title}</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-            <p className="open_work_intro">{openForWork.intro}</p>
-          </Col>
-        </Row>
+        <Container>
+          <PageIntro eyebrow={openForWork.badge} title="Useful help for small hardware jobs.">
+            <p>{openForWork.intro}</p>
+          </PageIntro>
 
-        <div className="open_work_services">
-          {openForWork.services.map((service) => {
-            const Icon = ICONS[service.shortTitle] || FaCube;
+          <section className="open_work_services" aria-labelledby="service-list-title">
+            <div>
+              <p className="eyebrow">What I can take on</p>
+              <h2 id="service-list-title">Small scope, clear output.</h2>
+            </div>
 
-            return (
-              <article className="open_work_card" key={service.title}>
-                <div className="open_work_card__icon" aria-hidden="true">
-                  <Icon />
-                </div>
-                <p className="open_work_card__label">{service.shortTitle}</p>
-                <h2>{service.title}</h2>
-                <p>{service.description}</p>
-                <ul>
-                  {service.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
+            <div className="open_work_service_list">
+              {openForWork.services.map((service) => (
+                <article key={service.title}>
+                  <p>{service.shortTitle}</p>
+                  <h3>{service.title}</h3>
+                  <span>{service.description}</span>
+                  <ul>
+                    {service.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
 
-        <Row className="open_work_contact">
-          <Col lg="6">
-            <section className="open_work_panel">
-              <p className="open_work_panel__label">Contact message</p>
-              <h2>Send the project brief.</h2>
+          <section className="open_work_brief" aria-labelledby="brief-title">
+            <div>
+              <p className="eyebrow">Send a useful brief</p>
+              <h2 id="brief-title">A rough sketch is better than a vague request.</h2>
               <p>
-                Tell me what you need designed, printed, or routed. Include size,
-                material, reference photos, circuit details, deadline, and your
-                Wormhole file link if files are ready.
+                Include dimensions, materials, reference photos, circuit details, and
+                anything that would make the first reply more practical.
               </p>
-              <a className="open_work_action" href={buildProjectMail()}>
-                <FaEnvelope aria-hidden="true" />
+              <a className="button_link" href={buildProjectMail()}>
+                <FiMail aria-hidden="true" />
                 Email {openForWork.email}
               </a>
-            </section>
-          </Col>
+            </div>
 
-          <Col lg="6">
-            <section className="open_work_panel open_work_file_panel">
-              <p className="open_work_panel__label">File drop box</p>
-              <h2>{openForWork.fileDropTitle}</h2>
+            <aside className="open_work_file_note">
+              <h3>{openForWork.fileDropTitle}</h3>
               <p>{openForWork.fileDropDescription}</p>
               <a
-                className="open_work_dropbox"
+                className="file_link"
                 href={openForWork.fileDropUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaUpload aria-hidden="true" />
-                <span>
-                  Open Wormhole
-                  <small>Upload files, copy the link, then email it to me.</small>
-                </span>
-                <FaExternalLinkAlt aria-hidden="true" />
+                <FiUploadCloud aria-hidden="true" />
+                Open Wormhole
+                <FiExternalLink aria-hidden="true" />
               </a>
-            </section>
-          </Col>
-        </Row>
-      </Container>
+            </aside>
+          </section>
+        </Container>
+      </main>
     </HelmetProvider>
   );
 };

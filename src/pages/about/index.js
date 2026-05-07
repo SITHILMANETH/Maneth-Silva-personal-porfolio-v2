@@ -1,8 +1,9 @@
 import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
-import { FaFilePdf } from "react-icons/fa";
+import { Container } from "react-bootstrap";
+import { FiFileText } from "react-icons/fi";
+import PageIntro from "../../components/pageintro";
 import {
   dataabout,
   meta,
@@ -15,76 +16,72 @@ const publicPath = (path) => `${process.env.PUBLIC_URL}${path}`;
 export const About = () => {
   return (
     <HelmetProvider>
-      <Container className="About-header about_page">
+      <main className="about_page">
         <Helmet>
           <meta charSet="utf-8" />
           <title>About | {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="8">
-            <p className="eyebrow">Builder profile</p>
-            <h1 className="display-4 mb-4">About the lab</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-          </Col>
-        </Row>
-        <Row className="sec_sp about_panel">
-          <Col lg="5">
-            <h3 className="color_sec py-4">{dataabout.title}</h3>
-          </Col>
-          <Col lg="7" className="d-flex align-items-center">
+
+        <Container>
+          <PageIntro eyebrow="About" title="A builder's notebook, cleaned up enough to share.">
+            {dataabout.aboutme.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </PageIntro>
+
+          <section className="about_resume" aria-labelledby="resume-title">
             <div>
-              {dataabout.aboutme.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+              <p className="eyebrow">Short version</p>
+              <h2 id="resume-title">{dataabout.title}</h2>
+            </div>
+            <div className="about_resume__copy">
+              <p>
+                I am most useful where hardware, code, and testing meet. I like projects
+                that can be measured, opened up, fixed, and tried again.
+              </p>
               <a
-                className="about_cv_button"
+                className="button_link"
                 href={publicPath(dataabout.cv)}
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaFilePdf aria-hidden="true" />
+                <FiFileText aria-hidden="true" />
                 View CV
               </a>
             </div>
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Build Timeline</h3>
-          </Col>
-          <Col lg="7">
-            <table className="table caption-top timeline_table">
-              <tbody>
-                {worktimeline.map((data, i) => {
-                  return (
-                    <tr key={i}>
-                      <th scope="row">{data.jobtitle}</th>
-                      <td>{data.where}</td>
-                      <td>{data.date}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Focus Areas</h3>
-          </Col>
-          <Col lg="7">
-            {services.map((data, i) => {
-              return (
-                <div className="service_ py-4" key={i}>
-                  <h5 className="service__title">{data.title}</h5>
-                  <p className="service_desc">{data.description}</p>
-                </div>
-              );
-            })}
-          </Col>
-        </Row>
-      </Container>
+          </section>
+
+          <section className="about_ledger" aria-labelledby="ledger-title">
+            <div>
+              <p className="eyebrow">Current tracks</p>
+              <h2 id="ledger-title">What I keep coming back to.</h2>
+            </div>
+            <div className="about_ledger__rows">
+              {worktimeline.map((item) => (
+                <article key={item.jobtitle}>
+                  <span>{item.date}</span>
+                  <h3>{item.jobtitle}</h3>
+                  <p>{item.where}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="about_services" aria-labelledby="focus-title">
+            <p className="eyebrow">Focus</p>
+            <h2 id="focus-title">The useful overlap.</h2>
+            <div>
+              {services.map((service) => (
+                <article key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        </Container>
+      </main>
     </HelmetProvider>
   );
 };

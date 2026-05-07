@@ -1,99 +1,61 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { FiX } from "react-icons/fi";
+import PageIntro from "../../components/pageintro";
 import { dataportfolio, meta } from "../../content_option";
 
 const publicPath = (path) => `${process.env.PUBLIC_URL}${path}`;
 
-const blockPhotoDownload = (event) => event.preventDefault();
-
-const protectedPhotoProps = {
-  draggable: false,
-  onContextMenu: blockPhotoDownload,
-  onDragStart: blockPhotoDownload,
-  onCopy: blockPhotoDownload,
-};
-
 const MissingMedia = ({ type, path }) => (
   <div className="media_placeholder">
-    <span className="media_placeholder__icon">{type === "photo" ? "IMG" : "MP4"}</span>
-    <strong>{type === "photo" ? "Photo space" : "Video space"}</strong>
+    <strong>{type === "photo" ? "Cover photo pending" : "Demo video pending"}</strong>
     <small>{path}</small>
   </div>
 );
 
-const ProjectCard = ({ project, index, onSelect }) => {
+const ProjectRow = ({ project, index, onSelect }) => {
   const [photoReady, setPhotoReady] = useState(true);
   const [videoReady, setVideoReady] = useState(true);
-  const openProject = (event) => {
-    if (event.target.closest("button, video, a")) {
-      return;
-    }
-    onSelect(project);
-  };
-
-  const openProjectFromKeyboard = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onSelect(project);
-    }
-  };
 
   return (
-    <article
-      className="project_card"
-      style={{ "--delay": `${index * 80}ms` }}
-      role="button"
-      tabIndex="0"
-      onClick={openProject}
-      onKeyDown={openProjectFromKeyboard}
-      aria-label={`Open ${project.title} description`}
-    >
-      <div className="project_card__topline">
-        <span>{project.tag}</span>
-        <span className="project_card__number">{String(index + 1).padStart(2, "0")}</span>
+    <article className="project_row">
+      <div className="project_row__meta">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <p>{project.status || project.tag}</p>
       </div>
 
-      <h2>{project.title}</h2>
-      <p>{project.description}</p>
+      <div className="project_row__body">
+        <p className="project_row__tag">{project.tag}</p>
+        <h2>{project.title}</h2>
+        <p>{project.description}</p>
+        <ul className="project_highlights">
+          {project.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+        <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
+          Open notes
+        </button>
+      </div>
 
-      <ul className="project_highlights">
-        {project.highlights.map((highlight) => (
-          <li key={highlight}>{highlight}</li>
-        ))}
-      </ul>
-
-      {project.youtubeVideos?.length > 0 && (
-        <div className="project_video_count">
-          {project.youtubeVideos.length} YouTube videos added
-        </div>
-      )}
-
-      {project.galleryPhotos?.length > 0 && (
-        <div className="project_photo_count">
-          {project.galleryPhotos.length} photos added
-        </div>
-      )}
-
-      <div className="project_media_grid" aria-label={`${project.title} media slots`}>
+      <div className="project_media_grid" aria-label={`${project.title} media`}>
         <div className="project_media_slot">
           {photoReady ? (
             <img
-              {...protectedPhotoProps}
-              className="protected_photo"
               src={publicPath(project.photo)}
-              alt={`${project.title} project`}
+              alt={`${project.title} build preview`}
+              loading="lazy"
               onError={() => setPhotoReady(false)}
             />
           ) : (
             <MissingMedia type="photo" path={`${project.folder}/photos/cover.jpg`} />
           )}
         </div>
-
-        <div className="project_media_slot project_media_slot--video">
+        <div className="project_media_slot">
           {videoReady ? (
-            <video controls preload="metadata" onError={() => setVideoReady(false)}>
+            <video controls preload="none" onError={() => setVideoReady(false)}>
               <source src={publicPath(project.video)} type="video/mp4" onError={() => setVideoReady(false)} />
               Your browser does not support the video tag.
             </video>
@@ -102,10 +64,6 @@ const ProjectCard = ({ project, index, onSelect }) => {
           )}
         </div>
       </div>
-
-      <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
-        Read about this project
-      </button>
     </article>
   );
 };
@@ -139,8 +97,9 @@ const ProjectDetails = ({ project, onClose }) => {
           aria-labelledby="project-modal-title"
           onClick={(event) => event.stopPropagation()}
         >
-          <button className="project_modal__close" type="button" onClick={onClose} aria-label="Close project description">
-            Close
+          <button className="project_modal__close" type="button" onClick={onClose} aria-label="Close project notes">
+            <FiX aria-hidden="true" />
+            <span>Close</span>
           </button>
 
           <p className="project_modal__tag">{project.tag}</p>
@@ -148,7 +107,7 @@ const ProjectDetails = ({ project, onClose }) => {
           <p className="project_modal__description">{project.details || project.description}</p>
 
           <div className="project_modal__section">
-            <h3>What it shows</h3>
+            <h3>What this work touches</h3>
             <ul>
               {project.highlights.map((highlight) => (
                 <li key={highlight}>{highlight}</li>
@@ -156,13 +115,13 @@ const ProjectDetails = ({ project, onClose }) => {
             </ul>
           </div>
 
-          <div className="project_modal__media-note">
+          <p className="project_modal__media-note">
             Media folder: <code>public{project.folder}</code>
-          </div>
+          </p>
 
           {project.galleryPhotos?.length > 0 && (
             <div className="project_modal__photos">
-              <h3>Project Photos</h3>
+              <h3>Photos</h3>
               <div className="project_photo_gallery">
                 {project.galleryPhotos.map((photo) => (
                   <button
@@ -171,16 +130,8 @@ const ProjectDetails = ({ project, onClose }) => {
                     type="button"
                     aria-label={`Enlarge ${photo.title}`}
                     onClick={() => setSelectedPhoto(photo)}
-                    onContextMenu={blockPhotoDownload}
-                    onCopy={blockPhotoDownload}
                   >
-                    <img
-                      {...protectedPhotoProps}
-                      className="protected_photo"
-                      src={publicPath(photo.src)}
-                      alt={photo.title}
-                      loading="lazy"
-                    />
+                    <img src={publicPath(photo.src)} alt={photo.title} loading="lazy" />
                     <span>{photo.title}</span>
                   </button>
                 ))}
@@ -190,7 +141,7 @@ const ProjectDetails = ({ project, onClose }) => {
 
           {project.youtubeVideos?.length > 0 && (
             <div className="project_modal__videos">
-              <h3>Battle Bot Videos</h3>
+              <h3>Video links</h3>
               <div className="project_video_gallery">
                 {project.youtubeVideos.map((video) => (
                   <div className="project_video_embed" key={video.url}>
@@ -213,13 +164,7 @@ const ProjectDetails = ({ project, onClose }) => {
       </div>
 
       {selectedPhoto && (
-        <div
-          className="project_photo_preview"
-          role="presentation"
-          onClick={() => setSelectedPhoto(null)}
-          onContextMenu={blockPhotoDownload}
-          onCopy={blockPhotoDownload}
-        >
+        <div className="project_photo_preview" role="presentation" onClick={() => setSelectedPhoto(null)}>
           <figure
             className="project_photo_preview__frame"
             role="dialog"
@@ -233,14 +178,10 @@ const ProjectDetails = ({ project, onClose }) => {
               onClick={() => setSelectedPhoto(null)}
               aria-label="Close enlarged photo"
             >
-              Close
+              <FiX aria-hidden="true" />
+              <span>Close</span>
             </button>
-            <img
-              {...protectedPhotoProps}
-              className="protected_photo"
-              src={publicPath(selectedPhoto.src)}
-              alt={selectedPhoto.title}
-            />
+            <img src={publicPath(selectedPhoto.src)} alt={selectedPhoto.title} />
             <figcaption>{selectedPhoto.title}</figcaption>
           </figure>
         </div>
@@ -254,33 +195,30 @@ export const Portfolio = () => {
 
   return (
     <HelmetProvider>
-      <Container className="portfolio_page">
+      <main className="portfolio_page">
         <Helmet>
           <meta charSet="utf-8" />
           <title>Projects | {meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="9">
-            <p className="eyebrow">Robotics lab archive</p>
-            <h1 className="display-4 mb-4">Projects</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-            <p className="portfolio_intro">
-              Each project card has a photo and video slot ready for your real build media.
-              Add <code>cover.jpg</code> and <code>demo.mp4</code> inside the matching folder to replace the placeholders.
-              Click any project to read a short description.
+        <Container>
+          <PageIntro eyebrow="Project log" title="Builds, notes, and half-solved problems.">
+            <p>
+              These are not case studies polished into identical boxes. They are project entries:
+              what each one is about, what it touches, and where the media belongs when the build is documented.
             </p>
-          </Col>
-        </Row>
-        <div className="project_grid">
-          {dataportfolio.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} onSelect={setSelectedProject} />
-          ))}
-        </div>
+          </PageIntro>
+
+          <div className="project_list">
+            {dataportfolio.map((project, i) => (
+              <ProjectRow key={project.title} project={project} index={i} onSelect={setSelectedProject} />
+            ))}
+          </div>
+        </Container>
         {selectedProject && (
           <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
-      </Container>
+      </main>
     </HelmetProvider>
   );
 };

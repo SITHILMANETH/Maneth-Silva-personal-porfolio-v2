@@ -1,74 +1,74 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import { VscGrabber, VscClose } from "react-icons/vsc";
-import { Link } from "react-router-dom";
-import { logotext, socialprofils } from "../content_option";
+import { FiMenu, FiX } from "react-icons/fi";
+import { Link, NavLink } from "react-router-dom";
+import { logotext } from "../content_option";
 import Themetoggle from "../components/themetoggle";
-import CuteRobot from "../components/cuterobot";
+
+const navItems = [
+  { label: "Work", to: "/portfolio" },
+  { label: "Services", to: "/open-for-work" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+];
 
 const Headermain = () => {
-  const [isActive, setActive] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleToggle = () => {
-    setActive(!isActive);
-    document.body.classList.toggle("ovhidden");
-  };
+  useEffect(() => {
+    document.body.classList.toggle("ovhidden", menuOpen);
+    return () => document.body.classList.remove("ovhidden");
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <header className="fixed-top site__header">
-        <div className="d-flex align-items-center justify-content-between">
-          <Link className="navbar-brand nav_ac brand_robot" to="/">
-            <CuteRobot className="cute-robot--small" label="Moving robot logo" />
-            <span>{logotext}</span>
-          </Link>
-          <div className="d-flex align-items-center">
-            <Themetoggle />
-            <button className="menu__button nav_ac" onClick={handleToggle} aria-label="Toggle navigation">
-              {!isActive ? <VscClose /> : <VscGrabber />}
-            </button>
-          </div>
-        </div>
+    <header className="site__header">
+      <div className="site__header_inner">
+        <Link className="site_brand" to="/" onClick={closeMenu}>
+          <span className="site_brand__mark" aria-hidden="true">MS</span>
+          <span>{logotext}</span>
+        </Link>
 
-        <div className={`site__navigation ${!isActive ? "menu__opend" : ""}`}>
-          <div className="bg__menu h-100">
-            <div className="menu__wrapper">
-              <div className="menu__container p-3">
-                <ul className="the_menu">
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/" className="my-3">Home</Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/portfolio" className="my-3">Projects</Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/open-for-work" className="my-3">Open for Work</Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/about" className="my-3">About</Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/contact" className="my-3">Contact</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="menu_footer d-flex flex-column flex-md-row justify-content-between align-items-md-center position-absolute w-100 p-3">
-            <div className="d-flex">
-              {Object.entries(socialprofils).map(([platform, url]) => (
-                <a key={platform} href={url}>{platform}</a>
-              ))}
-            </div>
-            <p className="copyright m-0">copyright __ {logotext}</p>
-          </div>
+        <nav className="site_nav" aria-label="Primary navigation">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) => (isActive ? "is-active" : undefined)}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="site_actions">
+          <Themetoggle />
+          <button
+            className="menu__button"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {menuOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
+          </button>
         </div>
-      </header>
-      <div className="br-top"></div>
-      <div className="br-bottom"></div>
-      <div className="br-left"></div>
-      <div className="br-right"></div>
-    </>
+      </div>
+
+      <nav
+        id="mobile-navigation"
+        className={`mobile_nav ${menuOpen ? "is-open" : ""}`}
+        aria-label="Mobile navigation"
+      >
+        {navItems.map((item) => (
+          <NavLink key={item.to} to={item.to} onClick={closeMenu}>
+            {item.label}
+          </NavLink>
+        ))}
+      </nav>
+    </header>
   );
 };
 

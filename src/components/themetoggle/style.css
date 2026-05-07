@@ -1,15 +1,10 @@
-.theme_toggler {
-    background: var(--primary-color);
-    z-index: 999999999;
-    left: 10px;
-    background: var(--primary-color);
-    display: flex;
-    height: 50px;
-    align-items: center;
-    padding-left: 10px;
+.theme_toggle {
+    min-width: 44px;
+    cursor: pointer;
 }
 
-.theme_toggler svg {
-    width: 2em;
-    height: 2em;
+.theme_toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke-width: 2.2;
 }

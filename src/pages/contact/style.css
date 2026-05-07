@@ -1,167 +1,129 @@
 .contact_page {
-    padding-bottom: 6rem;
-}
-
-.contact_intro {
-    max-width: 760px;
-    color: var(--muted-color);
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
-    line-height: 1.8;
+    padding: clamp(2rem, 7vw, 5rem) 0 6rem;
 }
 
 .contact_layout {
-    align-items: stretch;
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
 }
 
 .contact_panel,
 .contact__form {
-    min-height: 100%;
     border: 1px solid var(--line-color);
-    border-radius: 32px;
-    background:
-        radial-gradient(circle at 16% 0%, var(--glow-color), transparent 36%),
-        linear-gradient(145deg, var(--card-color), var(--card-color-2));
-    box-shadow: var(--card-shadow);
+    background: var(--primary-color);
+    padding: clamp(1rem, 4vw, 1.5rem);
 }
 
 .contact_panel {
-    padding: clamp(1.3rem, 3vw, 2rem);
+    box-shadow: 5px 5px 0 var(--line-color);
 }
 
-.contact_panel__label {
-    width: fit-content;
-    margin-bottom: 1rem;
-    padding: 0.45rem 0.72rem;
-    border: 1px solid var(--line-color);
-    border-radius: 999px;
-    color: var(--accent-color);
-    background: var(--chip-color);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.contact_panel h3 {
-    margin-bottom: 1rem;
+.contact_panel h2 {
+    margin: 0;
     color: var(--text-color);
-    font-size: clamp(1.9rem, 3vw, 3rem);
-    line-height: 1;
+    font-size: clamp(1.45rem, 4vw, 2.2rem);
+    line-height: 1.08;
 }
 
-.contact_panel p,
-.contact_hint {
+.contact_panel ul {
+    display: grid;
+    gap: 0.7rem;
+    margin: 1rem 0;
+    padding-left: 1.15rem;
+    list-style: disc;
     color: var(--muted-color);
-    line-height: 1.75;
+}
+
+.contact_panel li::marker {
+    color: var(--accent-color);
 }
 
 .contact_status {
     display: flex;
-    gap: 0.8rem;
+    gap: 0.7rem;
     align-items: flex-start;
-    margin: 1.4rem 0;
-    padding: 1rem;
+    margin: 1rem 0;
+    padding: 0.8rem;
     border: 1px solid var(--line-color);
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.045);
+    background: var(--panel-fill-color);
 }
 
 .contact_status span {
     flex: 0 0 auto;
-    width: 13px;
-    height: 13px;
-    margin-top: 0.28rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-top: 0.45rem;
     border-radius: 50%;
 }
 
 .contact_status span.is-live {
     background: var(--accent-color);
-    box-shadow: 0 0 18px var(--accent-color);
 }
 
 .contact_status span.is-waiting {
     background: var(--accent-color-2);
-    box-shadow: 0 0 18px var(--accent-color-2);
 }
 
-.contact_status strong {
-    display: block;
-    color: var(--text-color);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.05rem;
-}
-
-.contact_status small {
-    display: block;
-    margin-top: 0.25rem;
+.contact_status p {
+    margin: 0;
     color: var(--muted-color);
-    line-height: 1.55;
 }
 
 .contact_direct,
 .contact_socials a {
-    display: block;
-    margin-bottom: 0.7rem;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid var(--line-color);
-    border-radius: 18px;
-    color: var(--text-color);
-    background: rgba(255, 255, 255, 0.035);
-    font-family: 'IBM Plex Mono', monospace;
+    display: inline-block;
+    margin: 0 0.5rem 0.55rem 0;
+    color: var(--accent-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.82rem;
-    font-weight: 800;
-    text-decoration: none;
-    transition: color 220ms ease, border-color 220ms ease, transform 220ms ease;
-}
-
-.contact_direct:hover,
-.contact_socials a:hover {
-    color: var(--accent-color-2);
-    border-color: var(--accent-color-2);
-    transform: translateY(-2px);
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
 }
 
 .contact_socials {
-    margin: 1.2rem 0;
+    margin-top: 0.85rem;
 }
 
-.contact__form {
-    padding: clamp(1.3rem, 3vw, 2rem);
+.form_grid {
+    display: grid;
+    gap: 1rem;
 }
 
 .contact__form label {
     display: block;
-    margin: 0 0 0.55rem;
-    color: var(--accent-color);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    margin: 0 0 0.4rem;
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .contact__form .form-control {
-    padding: 1rem .95rem;
-    line-height: 1.5;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.75rem 0.8rem;
     color: var(--text-color);
-    background-color: rgba(255, 255, 255, 0.045);
-    border-radius: 18px !important;
+    background: var(--panel-fill-color);
     border: 1px solid var(--line-color);
-    margin-bottom: 1.35rem;
+    border-radius: 0 !important;
+    margin-bottom: 1rem;
     box-shadow: none;
+}
+
+.contact__form textarea.form-control {
+    resize: vertical;
 }
 
 .contact__form .form-control:focus {
     color: var(--text-color);
-    background-color: rgba(255, 255, 255, 0.07);
-    border-color: var(--accent-color-2);
-    box-shadow: 0 0 0 0.18rem rgba(255, 183, 3, 0.14);
-}
-
-.contact__form input.form-control,
-.contact__form select.form-control {
-    height: auto;
+    background: var(--primary-color);
+    border-color: var(--accent-color);
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: none;
 }
 
 .contact__form select.form-control {
@@ -173,29 +135,25 @@
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 1.4rem;
+    margin-top: 0.5rem;
 }
 
 .contact_actions .ac_btn {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .contact_actions span {
     max-width: 320px;
     color: var(--muted-color);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    line-height: 1.55;
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.74rem;
+    line-height: 1.5;
 }
 
 .co_alert {
     border: 1px solid var(--line-color);
-    border-radius: 18px !important;
-    font-family: 'IBM Plex Mono', monospace;
-}
-
-button.btn.ac_btn:hover {
-    color: var(--secondary-color);
+    border-radius: 0 !important;
+    font-family: 'IBM Plex Mono', Consolas, monospace;
 }
 
 .loading-bar {
@@ -203,36 +161,18 @@ button.btn.ac_btn:hover {
     top: 0;
     left: 0;
     right: 0;
-    height: 10px;
-    z-index: 999999999;
-    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
-    transform: translateX(100%);
-    animation: shift-rightwards 1s ease-in-out infinite;
-    animation-delay: .3s;
+    height: 4px;
+    z-index: 100;
+    background: var(--accent-color);
 }
 
-@keyframes shift-rightwards {
-    0% {
-        transform: translateX(-100%);
-    }
-    40% {
-        transform: translateX(0%);
-    }
-    60% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-@media (max-width: 575px) {
-    .contact_panel,
-    .contact__form {
-        border-radius: 24px;
+@media (min-width: 760px) {
+    .contact_layout {
+        grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+        gap: clamp(1.5rem, 5vw, 3rem);
     }
 
-    .contact_actions .ac_btn {
-        width: 100%;
+    .form_grid {
+        grid-template-columns: 1fr 1fr;
     }
 }

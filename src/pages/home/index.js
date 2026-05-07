@@ -1,82 +1,90 @@
 import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Typewriter from "typewriter-effect";
-import { introdata, meta } from "../../content_option";
 import { Link } from "react-router-dom";
-import CuteRobot from "../../components/cuterobot";
+import { dataportfolio, introdata, meta, services } from "../../content_option";
+
+const benchNotes = [
+  "Micro mouse sensor readings are still the first thing I check before changing code.",
+  "Battle bot testing keeps reminding me that repair access is a design feature.",
+  "PCB notes are being kept close to each project so future-me can actually use them.",
+];
 
 export const Home = () => {
+  const featuredProjects = dataportfolio.slice(0, 4);
+
   return (
     <HelmetProvider>
-      <section id="home" className="home">
+      <main id="home" className="home">
         <Helmet>
           <meta charSet="utf-8" />
           <title>{meta.title}</title>
           <meta name="description" content={meta.description} />
         </Helmet>
-        <div className="intro_sec d-block d-lg-flex align-items-center">
-          <div className="h_robot-lab order-1 order-lg-2 h-100">
-            <div className="robot_orbit robot_orbit--one"></div>
-            <div className="robot_orbit robot_orbit--two"></div>
-            <div className="lab_chip lab_chip--left">PCB</div>
-            <div className="lab_chip lab_chip--right">AI VISION</div>
-            <CuteRobot className="cute-robot--hero" />
-            <div className="signal_dots">
-              <span></span>
-              <span></span>
-              <span></span>
+
+        <section className="home_hero" aria-labelledby="home-title">
+          <div className="home_hero__copy">
+            <p className="eyebrow">{introdata.badge}</p>
+            <h1 id="home-title">{introdata.title}</h1>
+            <p>{introdata.description}</p>
+            <div className="home_actions" aria-label="Primary actions">
+              <Link className="button_link" to="/portfolio">Read the project log</Link>
+              <Link className="button_link button_link--quiet" to="/contact">Start a conversation</Link>
             </div>
           </div>
-          <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
-            <div className="align-self-center">
-              <div className="intro mx-auto">
-                <p className="hero_badge">{introdata.badge}</p>
-                <h2 className="mb-1x">{introdata.title}</h2>
-                <h1 className="fluidz-48 mb-1x">
-                  <Typewriter
-                    options={{
-                      strings: [
-                        introdata.animated.first,
-                        introdata.animated.second,
-                        introdata.animated.third,
-                      ],
-                      autoStart: true,
-                      loop: true,
-                      deleteSpeed: 10,
-                    }}
-                  />
-                </h1>
-                <p className="mb-1x hero_copy">{introdata.description}</p>
-                <div className="project_ticker" aria-label="Featured project areas">
-                  <span>Micro Mouse</span>
-                  <span>Battle Bot</span>
-                  <span>NASA App</span>
-                  <span>Object Detection</span>
-                </div>
-                <div className="intro_btn-action pb-5">
-                  <Link to="/portfolio" className="text_2">
-                    <div id="button_p" className="ac_btn btn">
-                      View Projects
-                      <div className="ring one"></div>
-                      <div className="ring two"></div>
-                      <div className="ring three"></div>
-                    </div>
-                  </Link>
-                  <Link to="/contact">
-                    <div id="button_h" className="ac_btn btn">
-                      Contact Me
-                      <div className="ring one"></div>
-                      <div className="ring two"></div>
-                      <div className="ring three"></div>
-                    </div>
-                  </Link>
-                </div>
+
+          <aside className="bench_note" aria-label="Current bench notes">
+            <h2>On the bench</h2>
+            <ul>
+              {benchNotes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
+          </aside>
+        </section>
+
+        <section className="home_section build_areas" aria-labelledby="build-areas-title">
+          <div>
+            <p className="eyebrow">What shows up here</p>
+            <h2 id="build-areas-title">Practical builds, kept close to the work.</h2>
+          </div>
+          <dl>
+            {services.map((service) => (
+              <div key={service.title}>
+                <dt>{service.title}</dt>
+                <dd>{service.description}</dd>
               </div>
-            </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="home_section project_notes" aria-labelledby="recent-work-title">
+          <div className="section_heading">
+            <p className="eyebrow">Recent work</p>
+            <h2 id="recent-work-title">A few things worth opening first.</h2>
           </div>
-        </div>
-      </section>
+          <div className="project_notes__list">
+            {featuredProjects.map((project) => (
+              <article key={project.title}>
+                <p>{project.status}</p>
+                <h3>{project.title}</h3>
+                <span>{project.description}</span>
+              </article>
+            ))}
+          </div>
+          <Link className="text_link" to="/portfolio">See all projects</Link>
+        </section>
+
+        <section className="home_section working_style" aria-labelledby="working-style-title">
+          <p className="eyebrow">How I work</p>
+          <h2 id="working-style-title">Small loops beat grand plans.</h2>
+          <ol>
+            <li>Start with the part that can be tested soonest.</li>
+            <li>Write down what failed while the details are still fresh.</li>
+            <li>Keep the interface simple enough that someone else can try it.</li>
+          </ol>
+        </section>
+      </main>
     </HelmetProvider>
   );
 };

@@ -1,55 +1,47 @@
-const logotext = "MANET LAB";
+const logotext = "Maneth Silva";
 
 const meta = {
-    title: "Manet | Robotics & AI Portfolio",
+    title: "Maneth Silva | Robotics, PCB, and Practical Software",
     description:
-        "Robotics, AI, electronics, PCB, Webots, and maker project portfolio.",
+        "A personal portfolio of robotics builds, PCB work, machine learning experiments, and notes from the workbench.",
 };
 
 const introdata = {
-    title: "I build robots, circuits, and intelligent systems.",
+    title: "I build small robots, practical circuits, and tools for testing them.",
     animated: {
-        first: "Micro mouse runs",
-        second: "Battle bot builds",
-        third: "AI vision experiments",
+        first: "Micro mouse notes",
+        second: "Battle bot repairs",
+        third: "Vision tests",
     },
     description:
-        "A hands-on portfolio for robotics competitions, PCB work, NASA App ideas, Webots simulations, smart devices, and machine learning projects.",
-    badge: "Robotics + AI + Electronics",
+        "This is a working portfolio, not a pitch deck. Some projects are polished, some are still messy, and the useful lessons are kept in view.",
+    badge: "Robotics, boards, code",
 };
 
 const dataabout = {
     title: "About me",
     cv: "/maneth-silva-cv.pdf",
     aboutme: [
-        "I'm Maneth Silva, a robotics and artificial intelligence undergraduate passionate about building intelligent systems that bridge software, hardware, and real world environments. My focus is on developing autonomous machines and AI driven systems that can perceive, decide, and act in dynamic conditions.",
-        "I am particularly interested in robotics, machine learning, embedded systems, and human centered AI applications. I enjoy working on projects that combine multiple disciplines such as control systems, computer vision, and intelligent decision making to create functional and interactive machines rather than just simulations or theory based models.",
-        "Through my academic journey and personal projects, I have been exploring areas like autonomous navigation, hybrid robotic behavior, and AI powered companion systems. I like building systems from the ground up, starting from understanding the problem, designing the architecture, implementing algorithms, and testing them in real environments.",
-        "My long term goal is to contribute to the development of intelligent robotic systems that can operate safely and effectively in real world scenarios, whether that is in automation, assistance, exploration, or human interaction. I am continuously learning and improving my skills in AI, robotics frameworks, and system design to move closer to that goal.",
-        "Outside of technical work, I am someone who enjoys breaking down complex problems into simple logical systems and experimenting with new ideas that push my understanding of how intelligent machines work.",
+        "I'm Maneth Silva, a robotics and AI undergraduate who likes building things close enough to reality that they can fail in useful ways.",
+        "Most of my work sits between mechanical prototypes, electronics, control code, and small machine learning experiments. I care about the boring parts too: wiring that can be debugged, notes that make sense later, and interfaces that do not fight the person using them.",
     ],
 };
 
 const worktimeline = [
     {
-        jobtitle: "Robotics Builder",
+        jobtitle: "Robotics",
         where: "Micro Mouse, Battle Bot, Scorpion Robot",
-        date: "Current",
+        date: "On the bench",
     },
     {
-        jobtitle: "AI + Automation Explorer",
-        where: "Object Detection, Naive Bayes Email Filter",
-        date: "Current",
+        jobtitle: "Vision and ML",
+        where: "Object Detection, Naive Bayes Filter",
+        date: "Testing",
     },
     {
-        jobtitle: "Competition + App Projects",
-        where: "HackX, NASA App, Webots Projects",
-        date: "Current",
-    },
-    {
-        jobtitle: "Electronics + PCB Maker",
-        where: "Custom circuits, sensors, and control boards",
-        date: "Current",
+        jobtitle: "Simulation",
+        where: "Webots Projects",
+        date: "Iterating",
     },
 ];
 
@@ -84,44 +76,44 @@ const services = [
     {
         title: "Robotics Builds",
         description:
-            "Designing and documenting robots from mechanical ideas to sensors, control logic, testing, and competition-ready improvements.",
+            "Small robots, drive systems, sensor tuning, and the mechanical decisions that make testing easier.",
     },
     {
-        title: "AI + Vision Experiments",
+        title: "Vision Experiments",
         description:
-            "Building practical models for object detection, automation, email filtering, and smart-device decision making.",
+            "Object detection, simple classifiers, camera input, and model checks that are grounded in actual use.",
     },
     {
-        title: "Electronics + PCB Work",
+        title: "Electronics and PCB Work",
         description:
-            "Creating clean electronics layouts, wiring plans, and PCB-ready project documentation for real-world prototypes.",
+            "Schematics, board layouts, wiring notes, and prototype documentation that someone can follow later.",
     },
 ];
 
 const openForWork = {
     title: "Open for Work",
-    badge: "CAD + PCB commissions",
+    badge: "Small build help",
     intro:
-        "I am open for small 3D design, 3D printing, and PCB design work. Send the project idea, dimensions, reference images, or circuit requirements and I will reply with the next steps.",
+        "I take on small 3D design, 3D printing, and PCB design tasks when the scope is clear. Send the rough idea first; we can tighten the details together.",
     email: "manethsilva@proton.me",
     fileDropUrl: "https://wormhole.app/",
-    fileDropTitle: "Share project files with Wormhole",
+    fileDropTitle: "Share files without making an account",
     fileDropDescription:
-        "Upload your CAD references, sketches, images, Gerbers, schematics, or notes on Wormhole, then email me the share link with your project message.",
+        "Upload references, sketches, Gerbers, schematics, or photos on Wormhole. Paste the link into your email so I can see the real constraints.",
     services: [
         {
-            title: "3D Designing and Printing",
+            title: "3D design and printing",
             shortTitle: "3D Design",
             description:
-                "Design your CAD model for printing, prototyping, robotics parts, enclosures, brackets, and custom mechanical ideas.",
-            details: ["CAD design", "3D print-ready files", "Prototype planning"],
+                "Small CAD parts for enclosures, brackets, robot mounts, and print-ready prototypes.",
+            details: ["STL / STEP output", "Print-friendly shapes"],
         },
         {
-            title: "PCB Designing",
+            title: "PCB design",
             shortTitle: "PCB Design",
             description:
-                "Make your PCB design from a circuit idea, schematic, module layout, or electronics project requirement.",
-            details: ["Schematic cleanup", "PCB layout", "Gerber-ready output"],
+                "Simple boards from a circuit idea, schematic, module layout, or repairable prototype.",
+            details: ["Schematic cleanup", "PCB layout"],
         },
     ],
 };
@@ -137,28 +129,26 @@ const dataportfolio = [
         title: "Micro Mouse",
         tag: "Autonomous robotics",
         description:
-            "A maze-solving robot project focused on sensing, motor control, path planning, and fast decision making inside a maze.",
+            "A maze-solving robot where the hard work is sensor consistency, motor control, and making the next turn less random.",
         details:
-            "This project is about building a small autonomous robot that can understand a maze, follow walls or sensor readings, choose paths, and improve its movement through testing.",
+            "A small autonomous robot that reads a maze, chooses paths, and gets better through repeated testing rather than one perfect theory.",
         highlights: ["Maze navigation", "Sensor tuning", "Control algorithms"],
+        status: "Prototype notes",
         ...buildMedia("micro-mouse"),
     },
     {
         title: "Battle Bot",
         tag: "Combat robotics",
         description:
-            "A rugged robot build for robot-battle challenges, balancing drive power, weapon strategy, durability, and quick repairs.",
+            "A rugged robot build where reliability, repair time, and drive power matter as much as the fun parts.",
         details:
-            "Battle Bot is focused on strong mechanical design, reliable drive control, protected electronics, and quick changes after testing or match damage.",
+            "Focused on mechanical design, drive control, protected electronics, and quick changes after each test.",
         highlights: ["Chassis design", "Drive system", "Impact testing"],
+        status: "Test footage",
         galleryPhotos: [
             {
                 title: "Battle Bot photo 01",
                 src: "/projects/battle-bot/photos/FB_IMG_1759077448382.jpg",
-            },
-            {
-                title: "Battle Bot photo 02",
-                src: "/projects/battle-bot/photos/Snapchat-1154343386.jpg",
             },
         ],
         youtubeVideos: [
@@ -167,143 +157,73 @@ const dataportfolio = [
                 url: "https://youtu.be/IVeNeMpzEO8",
                 embed: "https://www.youtube.com/embed/IVeNeMpzEO8",
             },
-            {
-                title: "Battle Bot test run 02",
-                url: "https://youtu.be/vpn60O3UuKc",
-                embed: "https://www.youtube.com/embed/vpn60O3UuKc",
-            },
-            {
-                title: "Battle Bot test run 03",
-                url: "https://youtu.be/dsOZVHYid2k",
-                embed: "https://www.youtube.com/embed/dsOZVHYid2k",
-            },
         ],
         ...buildMedia("battle-bot"),
-    },
-    {
-        title: "HackX",
-        tag: "Hackathon project",
-        description:
-            "A fast-build innovation project from ideation to demo, shaped for pitching, prototyping, and solving a real problem under time pressure.",
-        details:
-            "HackX is the space for hackathon ideas, teamwork, quick research, prototyping, demo preparation, and explaining the solution clearly to judges.",
-        highlights: ["Rapid prototype", "Team workflow", "Demo build"],
-        galleryPhotos: [
-            {
-                title: "HackX photo 01",
-                src: "/projects/hack-x/photos/IMG-20251112-WA0084(1).jpg",
-            },
-            {
-                title: "HackX photo 02",
-                src: "/projects/hack-x/photos/IMG-20251112-WA0086(1).jpg",
-            },
-            {
-                title: "HackX photo 03",
-                src: "/projects/hack-x/photos/IMG-20251112-WA0087(1).jpg",
-            },
-            {
-                title: "HackX photo 04",
-                src: "/projects/hack-x/photos/IMG-20251112-WA0088(1).jpg",
-            },
-            {
-                title: "HackX photo 05",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0015(1).jpg",
-            },
-            {
-                title: "HackX photo 06",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0016.jpg",
-            },
-            {
-                title: "HackX photo 07",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0019(1).jpg",
-            },
-            {
-                title: "HackX photo 08",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0021(2).jpg",
-            },
-            {
-                title: "HackX photo 09",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0028(1).jpg",
-            },
-            {
-                title: "HackX photo 10",
-                src: "/projects/hack-x/photos/IMG-20251114-WA0029(4).jpg",
-            },
-            {
-                title: "HackX photo 11",
-                src: "/projects/hack-x/photos/IMG-20251120-WA0016.jpg",
-            },
-        ],
-        ...buildMedia("hack-x"),
-    },
-    {
-        title: "NASA App",
-        tag: "Space + data app",
-        description:
-            "An app idea inspired by space, science, and public datasets, designed to turn complex information into something people can explore.",
-        details:
-            "NASA App collects space-inspired ideas, interface experiments, and data-driven features that make science information easier to understand.",
-        highlights: ["Space data", "App design", "Public impact"],
-        ...buildMedia("nasa-app"),
     },
     {
         title: "Smart Fan",
         tag: "IoT + embedded systems",
         description:
-            "A smart fan concept that can react to environment data and user settings, combining sensors, control logic, and automation.",
+            "A small automation project for reading environment data and changing fan behavior without overcomplicating the controls.",
         details:
-            "Smart Fan combines sensor readings, simple automation logic, and embedded control so the fan can respond to temperature or user preferences.",
+            "Combines sensor readings, simple automation logic, and embedded control.",
         highlights: ["Temperature sensing", "Automation", "Embedded control"],
+        status: "Concept build",
         ...buildMedia("smart-fan"),
     },
     {
         title: "Naive Bayes Email Filter",
         tag: "Machine learning",
         description:
-            "A classifier for filtering emails using Naive Bayes, text preprocessing, probability scoring, and practical spam-detection logic.",
+            "A plain machine learning exercise in text cleaning, word probabilities, and knowing where a simple model is enough.",
         details:
-            "This machine learning project uses text cleaning, word probabilities, and Naive Bayes classification to separate useful emails from spam-like messages.",
+            "Uses text cleaning, word probabilities, and classification to separate useful emails from spam.",
         highlights: ["Text classification", "Spam filtering", "Model evaluation"],
+        status: "Code study",
         ...buildMedia("naive-bayes-email-filter"),
     },
     {
         title: "Webots Projects",
         tag: "Robot simulation",
         description:
-            "Robot simulations built in Webots to test movement, sensors, robot behavior, and ideas before building hardware.",
+            "Simulation work for testing movement and sensor behavior before spending time on hardware fixes.",
         details:
-            "Webots Projects are for testing robot behavior in simulation first, including movement, sensor response, control code, and environment interactions.",
+            "Testing robot behavior in simulation before building hardware.",
         highlights: ["Simulation", "Robot behavior", "Sensor testing"],
+        status: "Simulation log",
         ...buildMedia("webots-projects"),
     },
     {
         title: "PCB",
         tag: "Electronics design",
         description:
-            "A collection space for PCB layouts, circuit experiments, board photos, schematic screenshots, and tested electronics modules.",
+            "A collection space for circuit experiments, board layouts, soldering notes, and small hardware checks.",
         details:
-            "PCB work documents circuit planning, component placement, board layouts, soldering, testing, and the electronics that support robot builds.",
+            "Documents circuit planning, component placement, board layouts, soldering, and testing.",
         highlights: ["Circuit design", "Board layout", "Hardware testing"],
+        status: "Workbench notes",
         ...buildMedia("pcb"),
     },
     {
         title: "Scorpion Robot",
         tag: "Bio-inspired robotics",
         description:
-            "A scorpion-inspired robot concept for exploring movement, mechanism design, expressive robotics, and sensor-driven behavior.",
+            "A robot concept for testing character-like motion, mechanisms, and sensor-driven behavior.",
         details:
-            "Scorpion Robot explores character-like robot motion, mechanical structure, and sensor-based behavior inspired by the shape and movement of a scorpion.",
+            "Explores character-like motion, mechanical structure, and sensor-based behavior.",
         highlights: ["Mechanisms", "Motion design", "Robot character"],
+        status: "Early idea",
         ...buildMedia("scorpion-robot"),
     },
     {
         title: "Object Detection",
         tag: "Computer vision",
         description:
-            "A vision project for detecting objects in images or video, with room to show test clips, dataset examples, and model results.",
+            "A computer vision project for checking object detection behavior with images, video, and camera input.",
         details:
-            "Object Detection focuses on camera input, model testing, detection results, and showing how computer vision can help robots or apps understand a scene.",
+            "Focuses on camera input, model testing, and detection results.",
         highlights: ["Detection model", "Camera input", "Real-time testing"],
+        status: "Model checks",
         ...buildMedia("object-detection"),
     },
 ];
@@ -312,8 +232,8 @@ const contactConfig = {
     YOUR_EMAIL: "manethsilva@proton.me",
     YOUR_FONE: "",
     description:
-        "Have a 3D design, 3D printing, PCB, robotics, AI, electronics, or competition idea? Send a message and include a Wormhole link if you have files to share.",
-    availability: "Open for 3D design, 3D printing, PCB design, robotics, AI, and student innovation collaborations.",
+        "Have a part to print, a small board to route, or a robotics idea that needs another pair of eyes? Send the context, not just the headline.",
+    availability: "Open for small 3D design, PCB design, robotics, and student collaborations.",
     // Create an emailjs.com account and replace these IDs before using the form in production.
     YOUR_SERVICE_ID: "service_id",
     YOUR_TEMPLATE_ID: "template_id",

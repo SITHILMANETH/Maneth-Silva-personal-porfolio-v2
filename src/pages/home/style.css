@@ -1,430 +1,186 @@
-section {
-    flex: 1 0 auto;
-    position: relative;
-    width: 100%;
-    transition: all .5s ease-in;
-}
-
 .home {
-    overflow: hidden;
-}
-
-.intro_sec {
-    min-height: calc(100vh - 60px);
-    height: auto;
-    margin-top: -60px;
-    padding-top: 60px;
-}
-
-.intro_sec .text,
-.intro_sec .h_robot-lab {
-    width: 50%;
-}
-
-.intro_sec .text {
-    min-height: calc(100vh - 60px);
-    padding: 5rem 0 3rem;
-}
-
-.intro_sec .intro {
-    max-width: 560px;
+    width: min(100% - 2rem, 1120px);
     margin: 0 auto;
-    animation: hero-copy-in 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    padding: clamp(2rem, 7vw, 5rem) 0 5rem;
 }
 
-.hero_badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin-bottom: 1.2rem;
-    padding: 0.48rem 0.78rem;
+.home_hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding-bottom: clamp(2.5rem, 8vw, 5rem);
+    border-bottom: 1px solid var(--line-color);
+}
+
+.home_hero__copy h1 {
+    max-width: 780px;
+    margin: 0;
+    color: var(--text-color);
+    font-size: clamp(2.25rem, 6.8vw, 4.8rem);
+    line-height: 1;
+}
+
+.home_hero__copy > p:not(.eyebrow) {
+    max-width: 650px;
+    margin: 1.2rem 0 0;
+    color: var(--muted-color);
+    font-size: clamp(1.05rem, 2.1vw, 1.24rem);
+}
+
+.home_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.6rem;
+}
+
+.bench_note {
     border: 1px solid var(--line-color);
-    border-radius: 999px;
-    color: var(--accent-color);
-    background: var(--chip-color);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    background: var(--primary-color);
+    padding: 1rem;
+    box-shadow: 5px 5px 0 var(--line-color);
+}
+
+.bench_note h2 {
+    margin: 0 0 0.75rem;
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.9rem;
     text-transform: uppercase;
 }
 
-.hero_badge::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-color-2);
-    box-shadow: 0 0 18px var(--accent-color-2);
-    animation: badge-pulse 1.6s ease-in-out infinite;
+.bench_note ul {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
 }
 
-.intro_sec .text h2 {
-    color: var(--text-color);
-    font-size: clamp(2.4rem, 5.4vw, 5.8rem);
-    line-height: 0.95;
-    margin-bottom: 1.25rem;
-}
-
-.intro_sec .text h1 {
-    min-height: 58px;
-    color: var(--accent-color-2);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: clamp(1.45rem, 2.7vw, 2.45rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.35rem;
-}
-
-.hero_copy {
-    max-width: 520px;
+.bench_note li {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--accent-color);
     color: var(--muted-color);
-    font-size: 1.08rem;
-    line-height: 1.85;
 }
 
-.project_ticker {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin: 1.8rem 0 2rem;
+.home_section {
+    padding: clamp(2.25rem, 7vw, 4.6rem) 0;
+    border-bottom: 1px solid var(--line-color);
 }
 
-.project_ticker span {
-    border: 1px solid var(--line-color);
-    border-radius: 999px;
-    color: var(--text-color);
-    background: rgba(255, 255, 255, 0.04);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    padding: 0.45rem 0.72rem;
-    animation: ticker-pop 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.home_section h2 {
+    max-width: 720px;
+    margin: 0;
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    line-height: 1.05;
 }
 
-.project_ticker span:nth-child(2) {
-    animation-delay: 100ms;
-}
-
-.project_ticker span:nth-child(3) {
-    animation-delay: 200ms;
-}
-
-.project_ticker span:nth-child(4) {
-    animation-delay: 300ms;
-}
-
-.h_robot-lab {
-    position: relative;
+.build_areas {
     display: grid;
-    place-items: center;
-    min-height: calc(100vh - 60px);
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 50% 50%, var(--glow-color), transparent 23rem),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent);
+    gap: 1.5rem;
 }
 
-.h_robot-lab::before {
-    content: "";
-    position: absolute;
-    inset: 12%;
-    border: 1px solid var(--line-color);
-    border-radius: 42% 58% 48% 52%;
-    background: repeating-linear-gradient(90deg, transparent 0 28px, rgba(255, 255, 255, 0.06) 28px 29px);
-    animation: lab-morph 9s ease-in-out infinite;
-}
-
-.h_robot-lab::after {
-    content: "";
-    position: absolute;
-    width: 58%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 1px solid var(--line-color);
-    background: radial-gradient(circle, transparent 58%, var(--glow-color));
-    animation: slow-spin 18s linear infinite;
-}
-
-.h_robot-lab .cute-robot {
-    z-index: 2;
-    width: min(42vw, 260px);
-    height: min(52vw, 330px);
-}
-
-.robot_orbit {
-    position: absolute;
-    border: 1px solid var(--line-strong-color);
-    border-radius: 50%;
-    animation: slow-spin 14s linear infinite;
-}
-
-.robot_orbit--one {
-    width: min(58vw, 440px);
-    height: min(58vw, 440px);
-}
-
-.robot_orbit--two {
-    width: min(43vw, 320px);
-    height: min(43vw, 320px);
-    border-style: dashed;
-    animation-direction: reverse;
-    animation-duration: 19s;
-}
-
-.lab_chip {
-    position: absolute;
-    z-index: 3;
-    border: 1px solid var(--line-color);
-    border-radius: 18px;
-    color: var(--text-color);
-    background: rgba(7, 19, 17, 0.42);
-    backdrop-filter: blur(16px);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: clamp(0.7rem, 1vw, 0.9rem);
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 0.78rem 1rem;
-    box-shadow: var(--card-shadow);
-}
-
-.lab_chip--left {
-    left: 11%;
-    top: 28%;
-    animation: chip-hover 4.2s ease-in-out infinite;
-}
-
-.lab_chip--right {
-    right: 9%;
-    bottom: 29%;
-    animation: chip-hover 4.8s ease-in-out infinite reverse;
-}
-
-.signal_dots {
-    position: absolute;
-    z-index: 3;
-    right: 18%;
-    top: 24%;
+.build_areas dl {
     display: grid;
-    gap: 0.55rem;
+    gap: 0;
+    margin: 0;
 }
 
-.signal_dots span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent-color-2);
-    box-shadow: 0 0 16px var(--accent-color-2);
-    animation: signal-dot 1.8s ease-in-out infinite;
+.build_areas dl > div {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--line-color);
 }
 
-.signal_dots span:nth-child(2) {
-    animation-delay: 0.25s;
+.build_areas dt {
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-weight: 700;
 }
 
-.signal_dots span:nth-child(3) {
-    animation-delay: 0.5s;
+.build_areas dd {
+    margin: 0;
+    color: var(--muted-color);
 }
 
-.ac_btn {
-    padding: 0.72rem 1.1rem;
-    color: var(--secondary-color);
-    position: relative;
-    border: var(--secondary-color) 2px solid;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
-    cursor: pointer;
-    border-radius: 999px;
-    margin-right: 20px;
-    margin-bottom: 0.8rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 800;
-    letter-spacing: 0.03em;
+.section_heading {
+    margin-bottom: 1.4rem;
 }
 
-.ac_btn a {
-    text-decoration: none;
+.project_notes__list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line-color);
 }
 
-.ac_btn:hover {
-    box-shadow: 8px 8px 0px var(--accent-color), -8px -8px 0px var(--accent-color-2);
+.project_notes__list article {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line-color);
 }
 
-.ac_btn:hover .one,
-.ac_btn:hover .two,
-.ac_btn:hover .three,
-.ac_btn:hover .four {
-    transform: translate3d(0px, 0px, 0px);
+.project_notes__list p {
+    margin: 0;
+    color: var(--accent-color-2);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-.ac_btn .ring {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: transparent;
-    top: 0;
-    left: 0;
-    transform: translate3d(0px, 90px, 0px);
+.project_notes__list h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.35rem;
 }
 
-.ac_btn .one {
-    background-color: var(--accent-color);
-    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-    z-index: -4;
+.project_notes__list span {
+    color: var(--muted-color);
 }
 
-.ac_btn .two {
-    background-color: var(--primary-color);
-    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-    z-index: -3;
+.text_link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--accent-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
 }
 
-.ac_btn .three {
-    background-color: var(--secondary-color);
-    z-index: -3;
-    transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
+.working_style {
+    border-bottom: 0;
 }
 
-#button_p {
-    background: var(--secondary-color);
-    color: var(--primary-color);
+.working_style ol {
+    display: grid;
+    gap: 0.8rem;
+    max-width: 720px;
+    margin: 1.4rem 0 0;
+    padding-left: 1.4rem;
+    color: var(--muted-color);
 }
 
-#button_h:hover {
-    color: var(--primary-color)
+.working_style li::marker {
+    color: var(--accent-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-weight: 700;
 }
 
-@keyframes hero-copy-in {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes ticker-pop {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes badge-pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.55);
-        opacity: 0.55;
-    }
-}
-
-@keyframes lab-morph {
-    0%, 100% {
-        transform: rotate(0deg) scale(1);
-        border-radius: 42% 58% 48% 52%;
-    }
-    50% {
-        transform: rotate(6deg) scale(1.04);
-        border-radius: 58% 42% 52% 48%;
-    }
-}
-
-@keyframes slow-spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes chip-hover {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-16px);
-    }
-}
-
-@keyframes signal-dot {
-    0%, 100% {
-        opacity: 0.35;
-        transform: translateY(0);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-7px);
-    }
-}
-
-@media (max-width: 991.98px) {
-    .intro_sec {
-        display: block;
-        min-height: auto;
+@media (min-width: 820px) {
+    .home_hero {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+        gap: clamp(2rem, 6vw, 4rem);
     }
 
-    .intro_sec .text,
-    .intro_sec .h_robot-lab {
-        width: 100%;
+    .build_areas {
+        grid-template-columns: 0.85fr 1.15fr;
     }
 
-    .intro_sec .text {
-        min-height: auto;
-        padding: 3rem 0 1rem;
-    }
-
-    .intro_sec .intro {
-        max-width: 760px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .h_robot-lab {
-        min-height: 520px;
-        margin-bottom: 1rem;
-    }
-
-    .h_robot-lab .cute-robot {
-        width: 210px;
-        height: 270px;
-    }
-}
-
-@media (max-width: 575px) {
-    .intro_sec .text h2 {
-        font-size: 3rem;
-    }
-
-    .intro_btn-action .ac_btn {
-        display: block;
-        width: 100%;
-        margin-right: 0;
-    }
-
-    .lab_chip--left {
-        left: 5%;
-    }
-
-    .lab_chip--right {
-        right: 5%;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .intro_sec .intro,
-    .project_ticker span,
-    .hero_badge::before,
-    .h_robot-lab::before,
-    .h_robot-lab::after,
-    .robot_orbit,
-    .lab_chip,
-    .signal_dots span {
-        animation: none !important;
+    .project_notes__list article {
+        grid-template-columns: 150px minmax(160px, 0.4fr) minmax(0, 1fr);
+        align-items: baseline;
+        gap: 1.5rem;
     }
 }
