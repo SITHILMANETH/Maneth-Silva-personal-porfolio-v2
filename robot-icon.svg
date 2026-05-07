@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Robot icon">
-  <rect width="128" height="128" rx="32" fill="#071311"/>
-  <circle cx="64" cy="24" r="8" fill="#ffb703"/>
-  <path d="M64 30v16" stroke="#f8f0dd" stroke-width="6" stroke-linecap="round"/>
-  <rect x="30" y="42" width="68" height="48" rx="18" fill="#f8f0dd" stroke="#13211d" stroke-width="6"/>
-  <circle cx="52" cy="64" r="7" fill="#13211d"/>
-  <circle cx="76" cy="64" r="7" fill="#13211d"/>
-  <path d="M53 78c7 8 15 8 22 0" fill="none" stroke="#49c1b5" stroke-width="5" stroke-linecap="round"/>
-  <rect x="42" y="92" width="44" height="20" rx="10" fill="#49c1b5" stroke="#13211d" stroke-width="6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="MS monogram">
+  <rect width="128" height="128" fill="#f4f0e8"/>
+  <rect x="14" y="14" width="100" height="100" fill="#fffaf1" stroke="#1d211c" stroke-width="6"/>
+  <path d="M30 88V40h10l24 30 24-30h10v48H84V62L66 85h-4L44 62v26H30z" fill="#1d211c"/>
+  <path d="M28 100h72" stroke="#096f63" stroke-width="6" stroke-linecap="square"/>
 </svg>
