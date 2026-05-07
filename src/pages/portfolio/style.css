@@ -7,6 +7,18 @@
     border-top: 2px solid var(--text-color);
 }
 
+.project_like_note {
+    width: fit-content;
+    margin: -2rem 0 1.2rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--line-color);
+    border-left: 4px solid var(--accent-color);
+    background: var(--panel-fill-color);
+    color: var(--muted-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.76rem;
+}
+
 .project_row {
     display: grid;
     gap: 1rem;
@@ -19,7 +31,7 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    color: var(--accent-color-2);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
 }
 
@@ -37,11 +49,15 @@
 
 .project_row__tag {
     margin: 0 0 0.35rem;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.28em;
 }
 
 .project_row__body h2 {
@@ -74,8 +90,17 @@
     padding: 0.25rem 0.45rem;
 }
 
-.project_read_more {
+.project_row__actions,
+.project_modal__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
     margin-top: 1rem;
+}
+
+.project_read_more {
+    margin-top: 0;
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--text-color);
     color: var(--text-color);
@@ -92,6 +117,52 @@
     background: var(--text-color);
     outline: 2px solid var(--accent-color);
     outline-offset: 3px;
+}
+
+.project_like {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 38px;
+    padding: 0.48rem 0.62rem;
+    border: 1px solid var(--line-color);
+    color: var(--text-color);
+    background: var(--panel-fill-color);
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.project_like:hover,
+.project_like:focus-visible {
+    border-color: var(--accent-color);
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.project_like svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2.3;
+}
+
+.project_like.is-liked {
+    border-color: var(--accent-color);
+    background: var(--chip-color);
+}
+
+.project_like.is-liked svg {
+    color: var(--accent-color);
+    fill: var(--accent-color);
+}
+
+.project_like__count {
+    min-width: 1.6rem;
+    padding: 0.08rem 0.35rem;
+    border-left: 2px solid var(--accent-color);
+    background: var(--primary-color);
+    text-align: center;
 }
 
 .project_media_grid {
@@ -198,11 +269,15 @@
 .project_modal__tag {
     width: fit-content;
     margin: 0 0 0.8rem;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.28em;
 }
 
 .project_modal__card h2 {
@@ -211,6 +286,10 @@
     color: var(--text-color);
     font-size: clamp(2rem, 6vw, 3.8rem);
     line-height: 1;
+}
+
+.project_modal__actions {
+    margin: 0 0 1rem;
 }
 
 .project_modal__description {
@@ -259,7 +338,7 @@
 }
 
 .project_modal__media-note code {
-    color: var(--accent-color-2);
+    color: var(--text-color);
     background: var(--code-bg-color);
     border: 1px solid var(--line-color);
     padding: 0.08rem 0.3rem;
@@ -317,10 +396,11 @@
 .project_video_embed a {
     display: block;
     padding: 0.65rem 0.75rem;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.76rem;
     font-weight: 700;
+    text-decoration-color: var(--accent-color);
 }
 
 .project_photo_preview__frame {

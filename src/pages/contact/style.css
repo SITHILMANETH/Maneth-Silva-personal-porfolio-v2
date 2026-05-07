@@ -74,10 +74,11 @@
 .contact_socials a {
     display: inline-block;
     margin: 0 0.5rem 0.55rem 0;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.82rem;
     font-weight: 700;
+    text-decoration-color: var(--accent-color);
     text-decoration-thickness: 2px;
     text-underline-offset: 0.22em;
 }

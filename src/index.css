@@ -1,59 +1,59 @@
 :root {
-    --bg-color: #f4f0e8;
-    --primary-color: #fffaf1;
-    --secondary-color: #1d211c;
-    --text-color: #1d211c;
-    --text-color-2: #1d211c;
-    --muted-color: #60665d;
-    --accent-color: #096f63;
-    --accent-color-2: #9b4d00;
-    --card-color: #fffaf1;
-    --card-color-2: #eee7da;
-    --chip-color: #e7f0ea;
-    --slot-color: #f7f2e8;
-    --line-color: #d5ccbd;
-    --line-strong-color: #918879;
-    --overlay-color: rgba(29, 33, 28, 0.72);
-    --code-bg-color: #f5e9d8;
-    --panel-fill-color: #fbf6ed;
-    --panel-fill-strong-color: #f3eadc;
-    --pattern-line-color: rgba(29, 33, 28, 0.07);
-    --pattern-line-soft-color: rgba(29, 33, 28, 0.045);
-    --floating-chip-bg-color: #fffaf1;
-    --media-bg-color: #ebe4d7;
-    --icon-surface-color: #f3eadc;
-    --card-shadow: 0 1px 0 rgba(29, 33, 28, 0.08);
-    --card-shadow-hover: 0 3px 0 rgba(29, 33, 28, 0.12);
-    color-scheme: light;
-}
-
-[data-theme="dark"] {
-    --bg-color: #151712;
-    --primary-color: #1e211b;
-    --secondary-color: #f7f0e2;
-    --text-color: #f7f0e2;
-    --text-color-2: #f7f0e2;
-    --muted-color: #bab3a7;
-    --accent-color: #65c7b3;
-    --accent-color-2: #e0a458;
-    --card-color: #1e211b;
-    --card-color-2: #282b23;
-    --chip-color: #22332c;
-    --slot-color: #20231d;
-    --line-color: #42463b;
-    --line-strong-color: #777c6b;
-    --overlay-color: rgba(10, 11, 9, 0.78);
-    --code-bg-color: #332719;
-    --panel-fill-color: #1b1e18;
-    --panel-fill-strong-color: #25281f;
-    --pattern-line-color: rgba(247, 240, 226, 0.08);
-    --pattern-line-soft-color: rgba(247, 240, 226, 0.05);
-    --floating-chip-bg-color: #24271f;
-    --media-bg-color: #11130f;
-    --icon-surface-color: #2c3026;
+    --bg-color: #18181B;
+    --primary-color: #18181B;
+    --secondary-color: #FAFAFA;
+    --text-color: #FAFAFA;
+    --text-color-2: #FAFAFA;
+    --muted-color: #D4D4D8;
+    --accent-color: #F97316;
+    --accent-color-2: #F97316;
+    --card-color: #18181B;
+    --card-color-2: #D4D4D8;
+    --chip-color: rgba(249, 115, 22, 0.18);
+    --slot-color: rgba(212, 212, 216, 0.08);
+    --line-color: rgba(212, 212, 216, 0.28);
+    --line-strong-color: #D4D4D8;
+    --overlay-color: rgba(24, 24, 27, 0.88);
+    --code-bg-color: rgba(249, 115, 22, 0.16);
+    --panel-fill-color: rgba(212, 212, 216, 0.08);
+    --panel-fill-strong-color: rgba(212, 212, 216, 0.14);
+    --pattern-line-color: rgba(212, 212, 216, 0.1);
+    --pattern-line-soft-color: rgba(212, 212, 216, 0.055);
+    --floating-chip-bg-color: #18181B;
+    --media-bg-color: rgba(212, 212, 216, 0.12);
+    --icon-surface-color: rgba(249, 115, 22, 0.16);
     --card-shadow: 0 1px 0 rgba(0, 0, 0, 0.34);
     --card-shadow-hover: 0 3px 0 rgba(0, 0, 0, 0.42);
     color-scheme: dark;
+}
+
+[data-theme="light"] {
+    --bg-color: #FAFAFA;
+    --primary-color: #FAFAFA;
+    --secondary-color: #18181B;
+    --text-color: #18181B;
+    --text-color-2: #18181B;
+    --muted-color: rgba(24, 24, 27, 0.68);
+    --accent-color: #F97316;
+    --accent-color-2: #F97316;
+    --card-color: #FAFAFA;
+    --card-color-2: #D4D4D8;
+    --chip-color: rgba(249, 115, 22, 0.12);
+    --slot-color: rgba(212, 212, 216, 0.42);
+    --line-color: #D4D4D8;
+    --line-strong-color: #18181B;
+    --overlay-color: rgba(24, 24, 27, 0.78);
+    --code-bg-color: rgba(249, 115, 22, 0.12);
+    --panel-fill-color: rgba(212, 212, 216, 0.28);
+    --panel-fill-strong-color: rgba(212, 212, 216, 0.5);
+    --pattern-line-color: rgba(24, 24, 27, 0.075);
+    --pattern-line-soft-color: rgba(24, 24, 27, 0.045);
+    --floating-chip-bg-color: #FAFAFA;
+    --media-bg-color: #D4D4D8;
+    --icon-surface-color: rgba(249, 115, 22, 0.12);
+    --card-shadow: 0 1px 0 rgba(24, 24, 27, 0.12);
+    --card-shadow-hover: 0 3px 0 rgba(24, 24, 27, 0.18);
+    color-scheme: light;
 }
 
 html {
@@ -114,11 +114,15 @@ h6 {
 }
 
 a {
-    color: var(--accent-color);
+    color: var(--text-color);
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
 }
 
 a:hover {
-    color: var(--accent-color-2);
+    color: var(--text-color);
+    background: var(--chip-color);
 }
 
 p {
@@ -159,7 +163,8 @@ code {
     margin: 0 0 0.85rem;
     padding: 0.2rem 0.45rem;
     border: 1px solid var(--line-color);
-    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-color);
     background: var(--chip-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.76rem;
@@ -211,7 +216,7 @@ code {
 }
 
 ::selection {
-    color: var(--primary-color);
+    color: #18181B;
     background: var(--accent-color);
 }
 

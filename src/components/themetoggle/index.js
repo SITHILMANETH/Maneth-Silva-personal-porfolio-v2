@@ -4,7 +4,7 @@ import "./style.css";
 
 const getInitialTheme = () => {
   const storedTheme = localStorage.getItem("theme");
-  return storedTheme === "light" || storedTheme === "dark" ? storedTheme : "light";
+  return storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
 };
 
 const Themetoggle = () => {

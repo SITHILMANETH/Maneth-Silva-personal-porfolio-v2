@@ -32,11 +32,15 @@
 
 .open_work_service_list p {
     margin: 0;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.76rem;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.28em;
 }
 
 .open_work_service_list h3,
@@ -89,9 +93,10 @@
     align-items: center;
     gap: 0.45rem;
     margin-top: 0.5rem;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-weight: 700;
+    text-decoration-color: var(--accent-color);
 }
 
 .file_link svg,

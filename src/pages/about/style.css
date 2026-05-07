@@ -50,11 +50,15 @@
 }
 
 .about_ledger__rows span {
-    color: var(--accent-color-2);
+    color: var(--text-color);
     font-family: 'IBM Plex Mono', Consolas, monospace;
     font-size: 0.76rem;
     font-weight: 700;
     text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.28em;
 }
 
 .about_ledger__rows h3,

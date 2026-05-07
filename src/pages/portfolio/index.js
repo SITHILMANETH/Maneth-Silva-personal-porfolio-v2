@@ -2,11 +2,45 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container } from "react-bootstrap";
-import { FiX } from "react-icons/fi";
+import { FiHeart, FiX } from "react-icons/fi";
 import PageIntro from "../../components/pageintro";
 import { dataportfolio, meta } from "../../content_option";
 
 const publicPath = (path) => `${process.env.PUBLIC_URL}${path}`;
+const LIKE_STORAGE_KEY = "maneth-portfolio-project-likes";
+
+const getProjectId = (project) => project.folder || project.title.toLowerCase().replace(/\s+/g, "-");
+
+const readStoredLikes = () => {
+  if (typeof window === "undefined") {
+    return { counts: {}, liked: {} };
+  }
+
+  try {
+    const stored = JSON.parse(window.localStorage.getItem(LIKE_STORAGE_KEY));
+    return {
+      counts: stored?.counts || {},
+      liked: stored?.liked || {},
+    };
+  } catch (error) {
+    return { counts: {}, liked: {} };
+  }
+};
+
+const LikeButton = ({ count, isLiked, onClick, className = "" }) => (
+  <button
+    className={`project_like ${isLiked ? "is-liked" : ""} ${className}`}
+    type="button"
+    aria-pressed={isLiked}
+    onClick={onClick}
+  >
+    <FiHeart aria-hidden="true" />
+    <span>{isLiked ? "Liked" : "Like"}</span>
+    <span className="project_like__count" aria-label={`${count} ${count === 1 ? "like" : "likes"}`}>
+      {count}
+    </span>
+  </button>
+);
 
 const MissingMedia = ({ type, path }) => (
   <div className="media_placeholder">
@@ -15,7 +49,7 @@ const MissingMedia = ({ type, path }) => (
   </div>
 );
 
-const ProjectRow = ({ project, index, onSelect }) => {
+const ProjectRow = ({ project, index, onSelect, likeCount, isLiked, onLike }) => {
   const [photoReady, setPhotoReady] = useState(true);
   const [videoReady, setVideoReady] = useState(true);
 
@@ -35,9 +69,12 @@ const ProjectRow = ({ project, index, onSelect }) => {
             <li key={highlight}>{highlight}</li>
           ))}
         </ul>
-        <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
-          Open notes
-        </button>
+        <div className="project_row__actions">
+          <button className="project_read_more" type="button" onClick={() => onSelect(project)}>
+            Open notes
+          </button>
+          <LikeButton count={likeCount} isLiked={isLiked} onClick={() => onLike(project)} />
+        </div>
       </div>
 
       <div className="project_media_grid" aria-label={`${project.title} media`}>
@@ -68,7 +105,7 @@ const ProjectRow = ({ project, index, onSelect }) => {
   );
 };
 
-const ProjectDetails = ({ project, onClose }) => {
+const ProjectDetails = ({ project, onClose, likeCount, isLiked, onLike }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   useEffect(() => {
@@ -104,6 +141,14 @@ const ProjectDetails = ({ project, onClose }) => {
 
           <p className="project_modal__tag">{project.tag}</p>
           <h2 id="project-modal-title">{project.title}</h2>
+          <div className="project_modal__actions">
+            <LikeButton
+              className="project_like--modal"
+              count={likeCount}
+              isLiked={isLiked}
+              onClick={() => onLike(project)}
+            />
+          </div>
           <p className="project_modal__description">{project.details || project.description}</p>
 
           <div className="project_modal__section">
@@ -192,6 +237,40 @@ const ProjectDetails = ({ project, onClose }) => {
 
 export const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [likeState, setLikeState] = useState(readStoredLikes);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(LIKE_STORAGE_KEY, JSON.stringify(likeState));
+    } catch (error) {
+      // Keep likes usable for the current session if storage is blocked.
+    }
+  }, [likeState]);
+
+  const toggleProjectLike = (project) => {
+    const projectId = getProjectId(project);
+
+    setLikeState((current) => {
+      const wasLiked = Boolean(current.liked[projectId]);
+      const nextLiked = !wasLiked;
+      const currentCount = Number(current.counts[projectId]) || 0;
+      const nextCount = Math.max(0, currentCount + (nextLiked ? 1 : -1));
+
+      return {
+        counts: {
+          ...current.counts,
+          [projectId]: nextCount,
+        },
+        liked: {
+          ...current.liked,
+          [projectId]: nextLiked,
+        },
+      };
+    });
+  };
+
+  const getLikeCount = (project) => Number(likeState.counts[getProjectId(project)]) || 0;
+  const getIsLiked = (project) => Boolean(likeState.liked[getProjectId(project)]);
 
   return (
     <HelmetProvider>
@@ -208,15 +287,30 @@ export const Portfolio = () => {
               what each one is about, what it touches, and where the media belongs when the build is documented.
             </p>
           </PageIntro>
+          <p className="project_like_note">Project likes are anonymous. Only the count is shown.</p>
 
           <div className="project_list">
             {dataportfolio.map((project, i) => (
-              <ProjectRow key={project.title} project={project} index={i} onSelect={setSelectedProject} />
+              <ProjectRow
+                key={project.title}
+                project={project}
+                index={i}
+                onSelect={setSelectedProject}
+                likeCount={getLikeCount(project)}
+                isLiked={getIsLiked(project)}
+                onLike={toggleProjectLike}
+              />
             ))}
           </div>
         </Container>
         {selectedProject && (
-          <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
+          <ProjectDetails
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            likeCount={getLikeCount(selectedProject)}
+            isLiked={getIsLiked(selectedProject)}
+            onLike={toggleProjectLike}
+          />
         )}
       </main>
     </HelmetProvider>
