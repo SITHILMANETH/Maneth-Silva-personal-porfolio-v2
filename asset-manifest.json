@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/Maneth-Silva-personal-porfolio-v2/static/css/main.cae04a04.css",
-    "main.js": "/Maneth-Silva-personal-porfolio-v2/static/js/main.0e2dfb66.js",
+    "main.css": "/Maneth-Silva-personal-porfolio-v2/static/css/main.a5f19faa.css",
+    "main.js": "/Maneth-Silva-personal-porfolio-v2/static/js/main.c5df0ca3.js",
     "index.html": "/Maneth-Silva-personal-porfolio-v2/index.html"
   },
   "entrypoints": [
-    "static/css/main.cae04a04.css",
-    "static/js/main.0e2dfb66.js"
+    "static/css/main.a5f19faa.css",
+    "static/js/main.c5df0ca3.js"
   ]
 }

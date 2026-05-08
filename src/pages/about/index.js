@@ -24,11 +24,16 @@ export const About = () => {
         </Helmet>
 
         <Container>
-          <PageIntro eyebrow="About" title="A builder's notebook, cleaned up enough to share.">
-            {dataabout.aboutme.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </PageIntro>
+          <div className="about_hero">
+            <PageIntro eyebrow="About" title="A builder's notebook, cleaned up enough to share.">
+              {dataabout.aboutme.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </PageIntro>
+            <figure className="about_portrait">
+              <img src={publicPath("/images/about-photo.png")} alt="Maneth Silva" />
+            </figure>
+          </div>
 
           <section className="about_resume" aria-labelledby="resume-title">
             <div>

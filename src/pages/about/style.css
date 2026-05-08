@@ -6,6 +6,34 @@
     color: var(--muted-color);
 }
 
+.about_hero {
+    display: grid;
+    gap: clamp(1.5rem, 5vw, 3rem);
+    margin-bottom: clamp(2rem, 6vw, 4rem);
+}
+
+.about_hero .page_intro {
+    margin-bottom: 0;
+}
+
+.about_portrait {
+    width: min(100%, 360px);
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--line-color);
+    background: var(--media-bg-color);
+    box-shadow: 8px 8px 0 var(--line-color);
+}
+
+.about_portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 34%;
+}
+
 .about_resume,
 .about_ledger,
 .about_services {
@@ -85,6 +113,16 @@
 }
 
 @media (min-width: 800px) {
+    .about_hero {
+        grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+        align-items: end;
+    }
+
+    .about_portrait {
+        justify-self: end;
+        width: min(100%, 340px);
+    }
+
     .about_resume,
     .about_ledger,
     .about_services {

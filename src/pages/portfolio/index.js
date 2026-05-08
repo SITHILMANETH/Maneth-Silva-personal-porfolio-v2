@@ -281,13 +281,7 @@ export const Portfolio = () => {
           <meta name="description" content={meta.description} />
         </Helmet>
         <Container>
-          <PageIntro eyebrow="Work log" title="Builds, notes, and half-solved problems.">
-            <p>
-              These are not case studies polished into identical boxes. They are project entries:
-              what each one is about, what it touches, and where the media belongs when the build is documented.
-            </p>
-          </PageIntro>
-          <p className="project_like_note">Project likes are anonymous. Only the count is shown.</p>
+          <PageIntro eyebrow="Work log" title="Builds, notes, and half-solved problems." />
 
           <div className="project_list">
             {dataportfolio.map((project, i) => (
